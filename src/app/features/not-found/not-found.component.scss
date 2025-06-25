@@ -1,0 +1,97 @@
+.not-found-container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: radial-gradient(circle, #0d0d0d, #000000);
+  color: #00e5ff;
+  text-align: center;
+  padding: 2rem;
+  font-family: 'Courier New', Courier, monospace;
+
+  .glitch {
+    font-size: 8rem;
+    position: relative;
+    animation: glitch 1s infinite;
+    color: #00e5ff;
+
+    &::before,
+    &::after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+      width: 100%;
+      color: #00bcd4;
+      overflow: hidden;
+      clip: rect(0, 900px, 0, 0);
+    }
+
+    &::before {
+      animation: glitchTop 1s infinite linear;
+    }
+
+    &::after {
+      animation: glitchBottom 1.2s infinite linear;
+    }
+  }
+
+  .subtext {
+    margin: 1rem 0;
+    font-size: 1.2rem;
+    color: #b2ebf2;
+  }
+
+  .ascii-terminal {
+    background: #111;
+    padding: 2rem;
+    border: 1px solid #00e5ff;
+    border-radius: 8px;
+    color: #00e5ff;
+    font-size: 1rem;
+    text-align: left;
+    max-width: 500px;
+
+
+    a.home-link {
+      color: #00e5ff;
+      text-decoration: underline;
+      transition: color 0.3s;
+      cursor: pointer;
+
+      &:hover {
+        color: #00ffff;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+@keyframes glitch {
+  0% { transform: none; }
+  20% { transform: skew(-5deg); }
+  40% { transform: skew(5deg); }
+  60% { transform: skew(-3deg); }
+  80% { transform: skew(3deg); }
+  100% { transform: none; }
+}
+
+@keyframes glitchTop {
+  0% { clip: rect(0, 9999px, 0, 0); }
+  10% { clip: rect(0, 9999px, 80px, 0); }
+  20% { clip: rect(0, 9999px, 0, 0); }
+  30% { clip: rect(40px, 9999px, 50px, 0); }
+  40% { clip: rect(0, 9999px, 0, 0); }
+  50% { clip: rect(70px, 9999px, 80px, 0); }
+  100% { clip: rect(0, 9999px, 0, 0); }
+}
+
+@keyframes glitchBottom {
+  0% { clip: rect(0, 9999px, 0, 0); }
+  10% { clip: rect(50px, 9999px, 60px, 0); }
+  20% { clip: rect(0, 9999px, 0, 0); }
+  30% { clip: rect(70px, 9999px, 80px, 0); }
+  40% { clip: rect(0, 9999px, 0, 0); }
+  50% { clip: rect(40px, 9999px, 50px, 0); }
+  100% { clip: rect(0, 9999px, 0, 0); }
+}

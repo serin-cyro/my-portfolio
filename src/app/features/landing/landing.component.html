@@ -1,0 +1,107 @@
+
+<nav class="responsive-navbar" [class.mobile]="isMobile">
+  <div class="logo" *ngIf="!isMobile" (click)="scrollToTop()">
+    &lt;<span class="highlight">ST</span>&gt;
+  </div>
+
+  <div class="nav-links">
+    <div 
+      *ngFor="let section of sections"
+      class="nav-link"
+      [class.active]="currentSection === section.id"
+      (click)="scrollTo(section.id)">
+      {{ section.label }}
+    </div>
+  </div>
+
+<div 
+  class="resume-buttons icon-only"
+  *ngIf="!isMobile">
+
+  <a href="assets/resume.pdf" target="_blank" mat-icon-button matTooltip="View Resume"  matTooltipClass="custom-tooltip">
+    <mat-icon>visibility</mat-icon>
+  </a>
+
+  <a href="assets/resume.pdf" download mat-icon-button matTooltip="Download Resume" matTooltipClass="custom-tooltip">
+    <mat-icon>download</mat-icon>
+  </a>
+</div>
+</nav>
+
+
+<section id="landing" class="landing">
+  <div class="content">
+    <h1>Hi, I'm <span class="highlight">Serin</span></h1>
+    <p class="animated-role">{{ displayedRole }}</p>
+    <div class="social-section">
+      <p class="connect-text">Wanna Connect?!</p>
+      <div class="social-icons">
+        <a *ngFor="let social of socialLinks" [href]="social.url" target="_blank" [title]="social.name" class="social-link">
+          <div class="icon-ring">
+            <img [src]="social.icon" [alt]="social.name" class="social-icon-style" />
+          </div>
+          <span class="social-label">{{ social.name }}</span>
+        </a>
+      </div>
+    </div>
+    <div class="actions">
+      <button mat-raised-button color="accent" (click)="scrollTo('projects')">View My Work</button>
+      <button mat-stroked-button color="primary" (click)="scrollTo('contact')">Contact Me</button>
+    </div>
+  </div>
+</section>
+
+<section id="about" class="about-section" [ngClass]="{'removePadding' : isMobile}">
+  <h2>🧠 About Me</h2>
+  <p>
+    Hey there! 👋 I’m a <strong>software engineer</strong> and <strong>performance nerd</strong>, currently gearing up to pursue my
+    <strong>MS in Cybersecurity</strong> in <strong>Boston, MA</strong>. I specialize in building <strong>fast ⚡, scalable, and
+    beautiful</strong> web apps with <strong>Angular</strong>, and I <em>live</em> for solving messy problems with clean, efficient code 💻.
+  </p>
+
+  <p>
+    At <strong>Tata Consultancy Services</strong> ,I craft sleek UIs, optimize massive data workflows, and modernize legacy
+    reinsurance systems — all while keeping performance and UX.
+  </p>
+
+  <p>
+    By night, I explore side projects blending <strong>cloud </strong>, <strong>security </strong>, and <strong>frontend magic ✨</strong> —
+    because what’s better than building cool stuff that <em>actually works</em>?
+  </p>
+
+  <h3>🌟 What I Do</h3>
+  <ul>
+    <li>🧠 Optimize APIs & queries</li>
+    <li>📊 Design slick dashboards</li>
+    <li>🚀 Build full-stack apps</li>
+    <li>🛡️ Tinker with cloud + security</li>
+    <li>🎯 Turn chaos into clean UI/UX</li>
+  </ul>
+
+  <h3>🎮 Bonus Fun Fact</h3>
+  <p>
+    When I’m not shipping features or hunting bugs, I’m <strong>grinding Valorant</strong> like a man on a mission 🎮<br />
+    <strong>Current rank: Platinum 3 🏆</strong> — dueling code and players with equal intensity 😤
+  </p>
+
+  <h3>💡 Let's Create Something Wild</h3>
+  <p>
+    Got an idea, challenge, or just wanna chat about threat detection 👾, or how Cypher is the best Sentinel?<br />
+    <strong>Hit me up — I’m always down to build something awesome. 🔥</strong>
+  </p>
+</section>
+
+<section id="timeline">
+<app-experience-timeline></app-experience-timeline>
+</section>
+
+<section id="projects">
+<app-projects></app-projects>
+</section>
+<section id="skills">
+<app-skills></app-skills>
+</section>
+
+<section id="contact">
+<app-contact></app-contact>
+</section>

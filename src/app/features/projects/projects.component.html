@@ -1,0 +1,25 @@
+<div class="projects-section">
+   <h2>Projects</h2>
+
+  <div class="timeline-container">
+    <div class="timeline-line"></div>
+
+    <div class="timeline-item" *ngFor="let project of projectTimeline; let i = index" [ngClass]="{ 'left': i % 2 === 0, 'right': i % 2 !== 0 }">
+      <div class="timeline-dot"></div>
+      <mat-expansion-panel class="timeline-card" [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            {{ project.title }}
+          </mat-panel-title>
+          <mat-panel-description>
+            {{ project.role }} — {{ project.period }}
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <p>{{ project.description }}</p>
+        <p><strong>{{ project.organization }}</strong></p>
+        <p><em>{{ project.details }}</em></p>
+      </mat-expansion-panel>
+    </div>
+  </div>
+</div>
+

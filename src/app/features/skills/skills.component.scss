@@ -1,0 +1,69 @@
+.skills-section {
+  background: #0d0d0d;
+  color: white;
+  padding: 4rem 2rem;
+  text-align: center;
+  width: 100%;
+
+  h2 {
+    margin-bottom: 2rem;
+    color: #00bcd4;
+  }
+
+  ::ng-deep .mat-tab-label {
+    color: #00e5ff;
+  }
+
+  ::ng-deep .mat-tab-label.mat-tab-label-active {
+    color: #00bcd4;
+  }
+
+  .skill-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem;
+    padding: 2rem;
+    justify-items: center;
+    opacity: 0;
+    transform: translateY(10px);
+    animation: fadeIn 0.6s ease forwards;
+  }
+
+  @keyframes fadeIn {
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  .skill-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #111;
+    padding: 1rem;
+    border-radius: 12px;
+    border: 1px solid #00bcd4;
+    text-decoration: none;
+    color: white;
+    transition: transform 0.2s;
+    width: 100%;
+    max-width: 140px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      margin-bottom: 0.5rem;
+    }
+
+    span {
+      font-size: 0.9rem;
+      text-align: center;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      border-color: #00e5ff;
+    }
+  }
+}

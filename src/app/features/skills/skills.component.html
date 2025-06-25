@@ -1,0 +1,13 @@
+<div class="skills-section">
+   <h2>Skills</h2>
+  <mat-tab-group mat-stretch-tabs dynamicHeight animationDuration="400ms">
+    <mat-tab *ngFor="let category of skillCategories" [label]="category.category">
+      <div class="skill-grid fade-in">
+        <a class="skill-card" *ngFor="let skill of category.skills" [href]="skill.link" target="_blank" rel="noopener">
+          <img [src]="skill.icon" [alt]="skill.name" />
+          <span>{{ skill.name }}</span>
+        </a>
+      </div>
+    </mat-tab>
+  </mat-tab-group>
+</div>

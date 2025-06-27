@@ -1,18 +1,17 @@
 <div class="skills-section">
   <h2>Skills</h2>
-  <mat-tab-group mat-stretch-tabs dynamicHeight animationDuration="400ms">
-    <mat-tab *ngFor="let category of skillCategories" [label]="category.category">
+  <mat-tab-group mat-stretch-tabs dynamicHeight animationDuration="400ms"   (selectedIndexChange)="onTabChange()">
+    <mat-tab *ngFor="let category of skillCategories; let tabIndex = index" [label]="category.category">
       <div class="skill-grid fade-in">
-        <a
+        <div
           class="skill-card"
-          *ngFor="let skill of category.skills"
-          [href]="skill.link"
-          target="_blank"
-          rel="noopener"
+          *ngFor="let skill of category.skills; let i = index"
+          (click)="onSkillClick(i)"
+          [class.active]="selectedSkillIndex === i"
         >
           <img [src]="skill.icon" [alt]="skill.name" />
           <span class="skill-name">{{ skill.name }}</span>
-        </a>
+        </div>
       </div>
     </mat-tab>
   </mat-tab-group>

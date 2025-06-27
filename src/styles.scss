@@ -10,6 +10,7 @@ html, body {
   height: 100%;
   overflow-x: hidden;
   background: #000; // avoid white background flash
+  touch-action: manipulation;
 }
 
 .custom-tooltip {

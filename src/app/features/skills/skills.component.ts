@@ -11,6 +11,8 @@ import { MatTabsModule } from '@angular/material/tabs';
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent {
+selectedSkillIndex: number | null = null;
+
   skillCategories = [
     {
       category: 'Languages',
@@ -64,4 +66,13 @@ export class SkillsComponent {
       ]
     }
   ];
+  
+onSkillClick(index: number) {
+  this.selectedSkillIndex = this.selectedSkillIndex === index ? null : index;
+}
+
+onTabChange() {
+  this.selectedSkillIndex = null; 
+}
+
 }

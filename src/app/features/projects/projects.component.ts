@@ -22,7 +22,7 @@ export class ProjectsComponent {
       details: 'Angular 19 standalone architecture, GitHub Pages deployment, responsive across devices.'
     },
     {
-      title: 'Intrusion Detection System Using Hybrid Deep Learning',
+      title: 'Hybrid Intrusion Detection System',
       role: 'Capstone Project',
       period: '2022',
       description: 'Built and trained a hybrid CNN-LSTM model for real-time IDS.',

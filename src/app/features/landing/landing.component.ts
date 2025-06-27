@@ -39,7 +39,7 @@ export class LandingComponent implements OnInit {
     { name: 'GitHub', url: 'https://github.com/serin-cyro', icon: 'https://github.com/fluidicon.png' },
     { name: 'Gmail', url: 'mailto:serintony@gmail.com', icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png' },
     { name: 'LinkedIn', url: 'https://www.linkedin.com/in/serin-tony/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg' },
-    { name: 'Telegram', url: 'https://t.me/@agent47_oops', icon: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg' },
+    //{ name: 'Telegram', url: 'https://t.me/@agent47_oops', icon: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg' },
     { name: 'Steam', url: 'https://steamcommunity.com/id/t_h_e_a_g_e_n_t/', icon: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg' }
   ];
 

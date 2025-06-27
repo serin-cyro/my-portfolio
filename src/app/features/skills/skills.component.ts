@@ -18,6 +18,8 @@ export class SkillsComponent {
         { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
         { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', link: 'https://www.typescriptlang.org/' },
         { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', link: 'https://www.python.org/' },
+        { name: 'C', icon: 'assets/c.png', link: 'https://dart.dev/' },
+        { name: 'C++', icon: 'assets/cpp.png', link: 'https://dart.dev/' },
         { name: 'Dart', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg', link: 'https://dart.dev/' }
       ]
     },
@@ -26,7 +28,7 @@ export class SkillsComponent {
       skills: [
         { name: 'Angular', icon: 'favicon.ico', link: 'https://angular.io/' },
         { name: 'Flutter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg', link: 'https://flutter.dev/' },
-        { name: 'Tailwind CSS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tailwindcss/tailwindcss-plain.svg', link: 'https://tailwindcss.com/' }
+        { name: 'Tailwind CSS', icon: 'assets/tailwind.png', link: 'https://tailwindcss.com/' }
       ]
     },
     {
@@ -34,21 +36,23 @@ export class SkillsComponent {
       skills: [
         { name: 'GitHub Actions', icon: 'https://github.com/fluidicon.png', link: 'https://github.com/features/actions' },
         { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg', link: 'https://firebase.google.com/' },
-        { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', link: 'https://azure.microsoft.com/' }
+        { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', link: 'https://azure.microsoft.com/' },
+        { name:'Google Cloud', icon :'assets/gcp.png', link:'https://cloud.google.com' }
       ]
     },
     {
       category: 'Databases',
       skills: [
         { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', link: 'https://www.mysql.com/' },
-        { name: 'Firestore', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg', link: 'https://firebase.google.com/products/firestore' }
+        { name: 'Firestore', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg', link: 'https://firebase.google.com/products/firestore' },
+        { name: 'Oracle', icon: 'assets/oracle.png', link: 'https://www.oracle.com/in/' },
       ]
     },
     {
       category: 'Security & Tools',
       skills: [
-        { name: 'OWASP ZAP', icon: 'https://www.zaproxy.org/images/zap-icon-128x128.png', link: 'https://www.zaproxy.org/' },
-        { name: 'Burp Suite', icon: 'https://portswigger.net/content/images/logos/burpsuite-twittercard.png', link: 'https://portswigger.net/burp' },
+        { name: 'OWASP ZAP', icon: 'assets/zap.png', link: 'https://www.zaproxy.org/' },
+        { name: 'Burp Suite', icon: 'assets/burpsuite.png', link: 'https://portswigger.net/burp' },
         { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg', link: 'https://www.postman.com/' }
       ]
     },

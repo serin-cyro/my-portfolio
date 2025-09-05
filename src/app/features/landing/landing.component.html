@@ -32,7 +32,18 @@
 <section id="landing" class="landing">
   <div class="content">
     <h1>Hi, I'm <span class="highlight">Serin</span></h1>
-    <p class="animated-role">{{ displayedRole }}</p>
+    <!-- <p class="animated-role">{{ displayedRole }}</p> -->
+     <p class="animated-role">
+      <typewriter
+        [texts]=roles
+        [typeSpeed]="155"
+        [deleteSpeed]="65"
+        [pause]="900"
+        [loop]="true"
+        [cursor]="true"
+      ></typewriter>
+    </p>
+
     <div class="social-section">
       <p class="connect-text">Wanna Connect?!</p>
       <div class="social-icons">
@@ -52,43 +63,38 @@
 </section>
 
 <section id="about" class="about-section" [ngClass]="{'removePadding' : isMobile}">
-  <h2>🧠 About Me</h2>
-  <p>
-    Hey there! 👋 I’m a <strong>software engineer</strong> and <strong>performance nerd</strong>, currently gearing up to pursue my
-    <strong>MS in Cybersecurity</strong> in <strong>Boston, MA</strong>. I specialize in building <strong>fast ⚡, scalable, and
-    beautiful</strong> web apps with <strong>Angular</strong>, and I <em>live</em> for solving messy problems with clean, efficient code 💻.
-  </p>
+  <h2>About Me</h2>
+<p>
+  I am a <strong>Software Engineer</strong> currently pursuing my <strong>Master’s in Cybersecurity</strong> in <strong>Boston, MA</strong>. My background lies in developing <strong>high-performance, scalable, and user-friendly</strong> web applications with <strong>Angular</strong>, and I am expanding my expertise at the intersection of <strong>security, cloud technologies, and software engineering</strong>.
+</p>
 
-  <p>
-    At <strong>Tata Consultancy Services</strong> ,I craft sleek UIs, optimize massive data workflows, and modernize legacy
-    reinsurance systems — all while keeping performance and UX.
-  </p>
+<p>
+  Previously at <strong>Tata Consultancy Services</strong>, I designed and developed modern user interfaces, optimized large-scale data workflows, and contributed to the modernization of legacy reinsurance systems—delivering solutions that combined efficiency with exceptional user experience.
+</p>
 
-  <p>
-    By night, I explore side projects blending <strong>cloud </strong>, <strong>security </strong>, and <strong>frontend magic ✨</strong> —
-    because what’s better than building cool stuff that <em>actually works</em>?
-  </p>
+<p>
+  Alongside my academic journey, I continue to explore projects that integrate <strong>cloud computing</strong>, <strong>cybersecurity</strong>, and <strong>frontend development</strong>, driven by a commitment to building practical and impactful solutions.
+</p>
 
-  <h3>🌟 What I Do</h3>
-  <ul>
-    <li>🧠 Optimize APIs & queries</li>
-    <li>📊 Design slick dashboards</li>
-    <li>🚀 Build full-stack apps</li>
-    <li>🛡️ Tinker with cloud + security</li>
-    <li>🎯 Turn chaos into clean UI/UX</li>
-  </ul>
+<h3>What I Do</h3>
+<ul>
+  <li>Optimize APIs and queries for efficiency</li>
+  <li>Design and develop interactive dashboards</li>
+  <li>Build and maintain full-stack applications</li>
+  <li>Experiment with cloud technologies and security solutions</li>
+  <li>Transform complex requirements into clean, effective UI/UX</li>
+</ul>
 
-  <h3>🎮 Bonus Fun Fact</h3>
-  <p>
-    When I’m not shipping features or hunting bugs, I’m <strong>grinding Valorant</strong> like a man on a mission 🎮<br />
-    <strong>Current rank: Platinum 3 🏆</strong> — dueling code and players with equal intensity 😤
-  </p>
+<h3>Beyond Work</h3>
+<p>
+  In my free time, I enjoy competitive gaming, particularly <strong>Valorant</strong>, where I approach challenges with the same focus and problem-solving mindset I bring to engineering.
+</p>
 
-  <h3>💡 Let's Create Something Wild</h3>
-  <p>
-    Got an idea, challenge, or just wanna chat about threat detection 👾, or how Cypher is the best Sentinel?<br />
-    <strong>Hit me up — I’m always down to build something awesome. 🔥</strong>
-  </p>
+<h3>Let’s Connect</h3>
+<p>
+  Whether it’s collaborating on innovative projects, discussing threat detection, or exchanging ideas on technology, I am always open to meaningful conversations and new opportunities to create impactful solutions.
+</p>
+
 </section>
 
 <section id="timeline">

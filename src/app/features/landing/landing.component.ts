@@ -10,10 +10,11 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { trigger, style, animate, transition } from '@angular/animations';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExperienceTimelineComponent } from '../experience-timeline/experience-timeline.component';
+import { TypewriterComponent } from '../../shared/typewriter/typewriter.component';
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatToolbarModule, MatIconModule, ContactComponent, ProjectsComponent, SkillsComponent, MatSidenavModule,MatTooltipModule,ExperienceTimelineComponent ],
+  imports: [CommonModule, MatButtonModule, MatToolbarModule, MatIconModule, ContactComponent, ProjectsComponent, SkillsComponent, MatSidenavModule,MatTooltipModule,ExperienceTimelineComponent,TypewriterComponent ],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
   animations: [

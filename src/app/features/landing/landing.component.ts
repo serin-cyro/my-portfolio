@@ -115,19 +115,21 @@ export class LandingComponent implements OnInit {
   scrollTo(sectionId: string): void {
     const element = document.getElementById(sectionId);
     if (element) {
-      const offset = this.isMobile ? 70 : 80;
-      const elementPosition = element.getBoundingClientRect().top;
-      const offsetPosition = elementPosition + window.pageYOffset - offset;
-
-      window.scrollTo({
-        top: offsetPosition,
-        behavior: 'smooth'
-      });
-      
-      // Close mobile menu after navigation
+      // Close mobile menu first if open
       if (this.mobileMenuOpen) {
         this.toggleMobileMenu();
       }
+
+      // Use scrollIntoView with better options
+      setTimeout(() => {
+        element.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start',
+          inline: 'nearest'
+        });
+      }, this.mobileMenuOpen ? 300 : 0); // Wait for menu close animation
+    } else {
+      console.warn(`Element with id '${sectionId}' not found`);
     }
   }
 

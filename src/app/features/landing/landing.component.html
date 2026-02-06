@@ -13,7 +13,7 @@
         *ngFor="let section of sections"
         class="nav-link"
         [class.active]="currentSection === section.id"
-        (click)="scrollTo(section.id)">
+        (click)="scrollTo(section.id); $event.preventDefault()">
         <span class="link-text">{{ section.label }}</span>
         <span class="link-indicator"></span>
       </a>
@@ -48,7 +48,7 @@
         *ngFor="let section of sections"
         class="mobile-nav-link"
         [class.active]="currentSection === section.id"
-        (click)="scrollTo(section.id); toggleMobileMenu()">
+        (click)="scrollTo(section.id); $event.preventDefault()">
         {{ section.label }}
       </a>
       

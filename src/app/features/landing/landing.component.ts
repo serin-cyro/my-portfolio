@@ -1,104 +1,202 @@
-import { Component, OnInit,HostListener,ChangeDetectorRef  } from '@angular/core';
+import { Component, OnInit, HostListener, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatIconModule } from '@angular/material/icon';
+import { MatTooltipModule } from '@angular/material/tooltip';
 import { ContactComponent } from "../contact/contact.component";
 import { ProjectsComponent } from "../projects/projects.component";
 import { SkillsComponent } from "../skills/skills.component";
-import { MatSidenavModule } from '@angular/material/sidenav';
-import { trigger, style, animate, transition } from '@angular/animations';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { ExperienceTimelineComponent } from '../experience-timeline/experience-timeline.component';
 import { TypewriterComponent } from '../../shared/typewriter/typewriter.component';
+import { trigger, state, style, transition, animate } from '@angular/animations';
+
 @Component({
   selector: 'app-landing',
   standalone: true,
-  imports: [CommonModule, MatButtonModule, MatToolbarModule, MatIconModule, ContactComponent, ProjectsComponent, SkillsComponent, MatSidenavModule,MatTooltipModule,ExperienceTimelineComponent,TypewriterComponent ],
+  imports: [
+    CommonModule,
+    MatButtonModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatTooltipModule,
+    ContactComponent,
+    ProjectsComponent,
+    SkillsComponent,
+    ExperienceTimelineComponent,
+    TypewriterComponent
+  ],
   templateUrl: './landing.component.html',
   styleUrls: ['./landing.component.scss'],
   animations: [
-    trigger('drawerAnimation', [
+    trigger('slideIn', [
       transition(':enter', [
         style({ transform: 'translateX(100%)', opacity: 0 }),
         animate('300ms ease-out', style({ transform: 'translateX(0)', opacity: 1 }))
       ]),
       transition(':leave', [
-        animate('200ms ease-in', style({ transform: 'translateX(100%)', opacity: 0 }))
+        animate('250ms ease-in', style({ transform: 'translateX(100%)', opacity: 0 }))
       ])
     ])
   ]
 })
 export class LandingComponent implements OnInit {
-  constructor(private cdr: ChangeDetectorRef ){}
-  roles = ['Cybersecurity Student','UI Developer', 'Gaming Enthusiast'];
-  currentRoleIndex = 0;
-  displayedRole = this.roles[0]
-  isMobile: boolean = false;
-
-   socialLinks = [
-    { name: 'GitHub', url: 'https://github.com/serin-cyro', icon: 'https://github.com/fluidicon.png' },
-    { name: 'Gmail', url: 'mailto:serintony@gmail.com', icon: 'https://upload.wikimedia.org/wikipedia/commons/4/4e/Gmail_Icon.png' },
-    { name: 'LinkedIn', url: 'https://www.linkedin.com/in/serin-tony/', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-original.svg' },
-    //{ name: 'Telegram', url: 'https://t.me/@agent47_oops', icon: 'https://upload.wikimedia.org/wikipedia/commons/8/82/Telegram_logo.svg' },
-    { name: 'Steam', url: 'https://steamcommunity.com/id/t_h_e_a_g_e_n_t/', icon: 'https://upload.wikimedia.org/wikipedia/commons/8/83/Steam_icon_logo.svg' }
+  // Dynamic roles for typewriter effect
+  roles = [
+    'Security Engineer',
+    'AppSec Specialist',
+    'Cloud Security Expert',
+    'Threat Hunter',
+    'Full-Stack Developer'
   ];
 
-   sections = [
+  // Social media links
+  socialLinks = [
+    {
+      name: 'GitHub',
+      url: 'https://github.com/serin-cyro',
+      icon: 'https://cdn.simpleicons.org/github/white'
+    },
+    {
+      name: 'LinkedIn',
+      url: 'https://www.linkedin.com/in/serin-tony/',
+      icon: 'https://cdn.simpleicons.org/linkedin/0A66C2'
+    },
+    {
+      name: 'Email',
+      url: 'mailto:tony.s@northeastern.edu',
+      icon: 'https://cdn.simpleicons.org/gmail/EA4335'
+    },
+    {
+      name: 'TryHackMe',
+      url: 'https://tryhackme.com/p/serintony',
+      icon: 'https://cdn.simpleicons.org/tryhackme/88cc14'
+    }
+  ];
+
+  // Navigation sections
+  sections = [
     { id: 'landing', label: 'Home' },
     { id: 'about', label: 'About' },
-    { id: 'timeline', label: 'Timeline'},
+    { id: 'timeline', label: 'Experience' },
     { id: 'projects', label: 'Projects' },
     { id: 'skills', label: 'Skills' },
-    { id: 'contact', label: 'Hire Me?' }
+    { id: 'contact', label: 'Contact' }
   ];
 
-  currentSection: string = '';
+  currentSection: string = 'landing';
+  isMobile: boolean = false;
+  mobileMenuOpen: boolean = false;
 
-  ngOnInit() {
-    this.checkMobile()
-    setInterval(() => {
-      this.currentRoleIndex = (this.currentRoleIndex + 1) % this.roles.length;
-      this.displayedRole = this.roles[this.currentRoleIndex];
-    }, 2000);
-  }
-   scrollTo(sectionId: string) {
-    const el = document.getElementById(sectionId);
-    //this.currentSection = sectionId;
-    el?.scrollIntoView({ behavior: 'smooth' });
+  constructor(private cdr: ChangeDetectorRef) {}
+
+  ngOnInit(): void {
+    this.checkMobile();
+    this.initializeScrollObserver();
   }
 
-  scrollToTop() {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  /**
+   * Toggle mobile menu
+   */
+  toggleMobileMenu(): void {
+    this.mobileMenuOpen = !this.mobileMenuOpen;
+    
+    // Prevent body scroll when menu is open
+    if (this.mobileMenuOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
   }
 
-  @HostListener('window:scroll', [])
-onScroll() {
-  const scrollMidpoint = window.innerHeight / 2;
-  console.log('--- SCROLL EVENT ---');
-  console.log('Window midpoint:', scrollMidpoint);
+  /**
+   * Smooth scroll to section
+   */
+  scrollTo(sectionId: string): void {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      const offset = this.isMobile ? 70 : 80;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - offset;
 
-  for (const section of this.sections) {
-    const el = document.getElementById(section.id);
-    if (el) {
-      const rect = el.getBoundingClientRect();
-      console.log(`Checking section: ${section.id}`, rect);
-
-      if (rect.top <= scrollMidpoint && rect.bottom >= scrollMidpoint) {
-        if (this.currentSection !== section.id) {
-          console.log('🟢 New current section:', section.id);
-          this.currentSection = section.id;
-        }
-        this.cdr.detectChanges();
-        break;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+      
+      // Close mobile menu after navigation
+      if (this.mobileMenuOpen) {
+        this.toggleMobileMenu();
       }
     }
   }
-}
 
-   @HostListener('window:resize', [])
-  checkMobile() {
-    this.isMobile = window.innerWidth <= 768;
+  /**
+   * Scroll to top
+   */
+  scrollToTop(): void {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   }
 
+  /**
+   * Track current section on scroll
+   */
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    const scrollPosition = window.scrollY + window.innerHeight / 3;
+
+    for (const section of this.sections) {
+      const element = document.getElementById(section.id);
+      if (element) {
+        const offsetTop = element.offsetTop;
+        const offsetBottom = offsetTop + element.offsetHeight;
+
+        if (scrollPosition >= offsetTop && scrollPosition < offsetBottom) {
+          if (this.currentSection !== section.id) {
+            this.currentSection = section.id;
+            this.cdr.detectChanges();
+          }
+          break;
+        }
+      }
+    }
+  }
+
+  /**
+   * Check if device is mobile
+   */
+  @HostListener('window:resize', [])
+  checkMobile(): void {
+    const wasMobile = this.isMobile;
+    this.isMobile = window.innerWidth <= 768;
+    
+    // Close mobile menu if resizing to desktop
+    if (wasMobile && !this.isMobile && this.mobileMenuOpen) {
+      this.toggleMobileMenu();
+    }
+  }
+
+  /**
+   * Initialize intersection observer for animations
+   */
+  private initializeScrollObserver(): void {
+    const observerOptions = {
+      threshold: 0.1,
+      rootMargin: '0px 0px -100px 0px'
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in-view');
+        }
+      });
+    }, observerOptions);
+
+    // Observe all sections
+    setTimeout(() => {
+      const sections = document.querySelectorAll('section');
+      sections.forEach(section => observer.observe(section));
+    }, 100);
+  }
 }

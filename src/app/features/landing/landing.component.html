@@ -1,113 +1,338 @@
+<nav class="modern-navbar" [class.mobile]="isMobile">
+  <div class="navbar-content">
+    <!-- Logo - Desktop only -->
+    <div class="logo" *ngIf="!isMobile" (click)="scrollToTop()">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-text gradient-text">ST</span>
+      <span class="logo-bracket">&gt;</span>
+    </div>
 
-<nav class="responsive-navbar" [class.mobile]="isMobile">
-  <div class="logo" *ngIf="!isMobile" (click)="scrollToTop()">
-    &lt;<span class="highlight">ST</span>&gt;
-  </div>
+    <!-- Desktop Navigation -->
+    <div class="nav-links" *ngIf="!isMobile">
+      <a 
+        *ngFor="let section of sections"
+        class="nav-link"
+        [class.active]="currentSection === section.id"
+        (click)="scrollTo(section.id)">
+        <span class="link-text">{{ section.label }}</span>
+        <span class="link-indicator"></span>
+      </a>
+    </div>
 
-  <div class="nav-links">
-    <div 
-      *ngFor="let section of sections"
-      class="nav-link"
-      [class.active]="currentSection === section.id"
-      (click)="scrollTo(section.id)">
-      {{ section.label }}
+    <!-- Mobile Navigation -->
+    <div class="mobile-nav" *ngIf="isMobile">
+      <button class="menu-toggle" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+        <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
+      </button>
+    </div>
+
+    <!-- Desktop Actions -->
+    <div class="nav-actions" *ngIf="!isMobile">
+      <a href="assets/resume.pdf" target="_blank" 
+         class="action-btn" 
+         matTooltip="View Resume">
+        <mat-icon>visibility</mat-icon>
+      </a>
+      <a href="assets/resume.pdf" download 
+         class="action-btn primary" 
+         matTooltip="Download Resume">
+        <mat-icon>download</mat-icon>
+      </a>
     </div>
   </div>
 
-<div 
-  class="resume-buttons icon-only"
-  *ngIf="!isMobile">
-
-  <a href="assets/resume.pdf" target="_blank" mat-icon-button matTooltip="View Resume"  matTooltipClass="custom-tooltip">
-    <mat-icon>visibility</mat-icon>
-  </a>
-
-  <a href="assets/resume.pdf" download mat-icon-button matTooltip="Download Resume" matTooltipClass="custom-tooltip">
-    <mat-icon>download</mat-icon>
-  </a>
-</div>
-</nav>
-
-
-<section id="landing" class="landing">
-  <div class="content">
-    <h1>Hi, I'm <span class="highlight">Serin</span></h1>
-    <!-- <p class="animated-role">{{ displayedRole }}</p> -->
-     <p class="animated-role">
-      <typewriter
-        [texts]=roles
-        [typeSpeed]="155"
-        [deleteSpeed]="65"
-        [pause]="900"
-        [loop]="true"
-        [cursor]="true"
-      ></typewriter>
-    </p>
-
-    <div class="social-section">
-      <p class="connect-text">Wanna Connect?!</p>
-      <div class="social-icons">
-        <a *ngFor="let social of socialLinks" [href]="social.url" target="_blank" [title]="social.name" class="social-link">
-          <div class="icon-ring">
-            <img [src]="social.icon" [alt]="social.name" class="social-icon-style" />
-          </div>
-          <span class="social-label">{{ social.name }}</span>
+  <!-- Mobile Menu Overlay -->
+  <div class="mobile-menu-overlay" *ngIf="isMobile && mobileMenuOpen" [@slideIn]>
+    <div class="mobile-menu-content">
+      <a 
+        *ngFor="let section of sections"
+        class="mobile-nav-link"
+        [class.active]="currentSection === section.id"
+        (click)="scrollTo(section.id); toggleMobileMenu()">
+        {{ section.label }}
+      </a>
+      
+      <div class="mobile-menu-actions">
+        <a href="assets/resume.pdf" target="_blank" class="mobile-action-btn">
+          <mat-icon>visibility</mat-icon>
+          <span>View Resume</span>
+        </a>
+        <a href="assets/resume.pdf" download class="mobile-action-btn">
+          <mat-icon>download</mat-icon>
+          <span>Download Resume</span>
         </a>
       </div>
     </div>
-    <div class="actions">
-      <button mat-raised-button color="accent" (click)="scrollTo('projects')">View My Work</button>
-      <button mat-stroked-button color="primary" (click)="scrollTo('contact')">Contact Me</button>
+  </div>
+</nav>
+
+
+<section id="landing" class="hero-section">
+  <div class="hero-background">
+    <div class="grid-overlay"></div>
+    <div class="glow-orb orb-1"></div>
+    <div class="glow-orb orb-2"></div>
+  </div>
+
+  <div class="hero-content">
+    <div class="status-badge animate-fade-in">
+      <span class="status-dot"></span>
+      <span>Available Summer 2026</span>
+    </div>
+
+    <h1 class="hero-title animate-fade-in-up delay-1">
+      Hi, I'm <span class="gradient-text">Serin Tony</span>
+    </h1>
+
+    <div class="hero-subtitle animate-fade-in-up delay-2">
+      <typewriter
+        [texts]="roles"
+        [typeSpeed]="100"
+        [deleteSpeed]="50"
+        [pause]="1500"
+        [loop]="true"
+        [cursor]="true"
+      ></typewriter>
+    </div>
+
+    <p class="hero-tagline animate-fade-in-up delay-3">
+      Building secure systems • Breaking them first
+    </p>
+
+    <div class="hero-stats animate-fade-in-up delay-4">
+      <div class="stat-item">
+        <div class="stat-value">3+</div>
+        <div class="stat-label">Years</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-value">Top 8%</div>
+        <div class="stat-label">TryHackMe</div>
+      </div>
+      <div class="stat-divider"></div>
+      <div class="stat-item">
+        <div class="stat-value">3.83</div>
+        <div class="stat-label">GPA</div>
+      </div>
+    </div>
+
+    <div class="hero-actions animate-fade-in-up delay-5">
+      <button mat-raised-button class="btn-primary" (click)="scrollTo('projects')">
+        <span>View Projects</span>
+        <mat-icon>arrow_forward</mat-icon>
+      </button>
+      <button mat-stroked-button class="btn-secondary" (click)="scrollTo('contact')">
+        <span>Get In Touch</span>
+      </button>
+    </div>
+
+    <div class="social-links animate-fade-in-up delay-6">
+      <a href="https://github.com/serin-cyro" 
+         target="_blank" 
+         class="social-link"
+         matTooltip="GitHub"
+         matTooltipPosition="below">
+        <mat-icon>code</mat-icon>
+      </a>
+      
+      <a href="https://www.linkedin.com/in/serin-tony/" 
+         target="_blank" 
+         class="social-link"
+         matTooltip="LinkedIn"
+         matTooltipPosition="below">
+        <mat-icon>person</mat-icon>
+      </a>
+      
+      <a href="mailto:tony.s &#64;northeastern.edu" 
+         target="_blank" 
+         class="social-link"
+         matTooltip="Email"
+         matTooltipPosition="below">
+        <mat-icon>email</mat-icon>
+      </a>
+      
+      <a href="https://tryhackme.com/p/serintony" 
+         target="_blank" 
+         class="social-link"
+         matTooltip="TryHackMe"
+         matTooltipPosition="below">
+        <mat-icon>verified_user</mat-icon>
+      </a>
+    </div>
+  </div>
+
+  <div class="scroll-indicator animate-fade-in delay-7" *ngIf="!isMobile">
+    <div class="scroll-line"></div>
+    <span>Scroll</span>
+  </div>
+</section>
+
+<section id="about" class="about-section" [ngClass]="{'mobile-padding' : isMobile}">
+  <div class="section-container">
+    <div class="section-header">
+      <span class="section-label">Who I Am</span>
+      <h2 class="section-title">
+        Software Engineer <span class="gradient-text">×</span> Security Researcher
+      </h2>
+    </div>
+
+    <div class="about-content">
+      <!-- Intro Card -->
+      <div class="intro-card glass-strong">
+        <div class="intro-icon">
+          <mat-icon>shield</mat-icon>
+        </div>
+        <div class="intro-text">
+          <p>
+            <strong>MS Cybersecurity - Northeastern University (3.83 GPA)</strong>
+          </p>
+          <p>
+            3+ years building secure, high-performance web applications at <strong>Tata Consultancy Services</strong>. 
+            Specialized in <strong>Application Security, Cloud Security & Threat Detection</strong>.
+          </p>
+        </div>
+      </div>
+
+      <!-- Impact Stats -->
+      <div class="impact-grid">
+        <div class="impact-card">
+          <div class="impact-number gradient-text">40%</div>
+          <div class="impact-label">Security & Performance Improvement</div>
+          <div class="impact-detail">Legacy system modernization at TCS</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-number gradient-text">Top 8%</div>
+          <div class="impact-label">TryHackMe Ranking</div>
+          <div class="impact-detail">Active cybersecurity practitioner</div>
+        </div>
+
+        <div class="impact-card">
+          <div class="impact-number gradient-text">Zero</div>
+          <div class="impact-label">Critical Vulnerabilities</div>
+          <div class="impact-detail">Post secure code review implementation</div>
+        </div>
+      </div>
+
+      <!-- Core Competencies -->
+      <div class="competencies-section">
+        <h3 class="subsection-title">Core Competencies</h3>
+        <div class="competencies-grid">
+          <div class="competency-card">
+            <div class="competency-icon security">
+              <mat-icon>verified_user</mat-icon>
+            </div>
+            <h4>Application Security</h4>
+            <p>Secure code review, vulnerability mitigation (XSS, IDOR, CSRF), OWASP Top 10</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon development">
+              <mat-icon>code</mat-icon>
+            </div>
+            <h4>Full-Stack Development</h4>
+            <p>Angular, TypeScript, Python, REST/GraphQL APIs, DevSecOps workflows</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon cloud">
+              <mat-icon>cloud</mat-icon>
+            </div>
+            <h4>Cloud Security</h4>
+            <p>AWS IAM, S3, CloudTrail, GCP, Docker, CI/CD security integration</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon threat">
+              <mat-icon>bug_report</mat-icon>
+            </div>
+            <h4>Threat Detection</h4>
+            <p>Network analysis, incident response, SIEM tools, intrusion detection</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Tech Stack Pills -->
+      <div class="tech-stack-section">
+        <h3 class="subsection-title">Tech Stack</h3>
+        <div class="tech-pills">
+          <span class="pill security">
+            <mat-icon>security</mat-icon>
+            OWASP & AppSec
+          </span>
+          <span class="pill">Angular</span>
+          <span class="pill">TypeScript</span>
+          <span class="pill">Python</span>
+          <span class="pill security">
+            <mat-icon>cloud_done</mat-icon>
+            AWS & GCP
+          </span>
+          <span class="pill">Docker</span>
+          <span class="pill">Bash</span>
+          <span class="pill security">
+            <mat-icon>search</mat-icon>
+            Threat Hunting
+          </span>
+          <span class="pill">REST & GraphQL</span>
+          <span class="pill">Linux</span>
+          <span class="pill security">DevSecOps</span>
+          <span class="pill">Git</span>
+        </div>
+      </div>
+
+      <!-- CTA Box -->
+      <div class="cta-box">
+        <div class="cta-icon">
+          <mat-icon>work</mat-icon>
+        </div>
+        <div class="cta-content">
+          <h4>Open to Opportunities</h4>
+          <p>Security Engineering • Application Security • Cloud Security • SecOps</p>
+        </div>
+        <button mat-raised-button class="btn-primary" (click)="scrollTo('contact')">
+          Let's Connect
+        </button>
+      </div>
     </div>
   </div>
 </section>
 
-<section id="about" class="about-section" [ngClass]="{'removePadding' : isMobile}">
-  <h2>About Me</h2>
-<p>
-  I am a <strong>Software Engineer</strong> currently pursuing my <strong>Master’s in Cybersecurity</strong> in <strong>Boston, MA</strong>. My background lies in developing <strong>high-performance, scalable, and user-friendly</strong> web applications with <strong>Angular</strong>, and I am expanding my expertise at the intersection of <strong>security, cloud technologies, and software engineering</strong>.
-</p>
-
-<p>
-  Previously at <strong>Tata Consultancy Services</strong>, I designed and developed modern user interfaces, optimized large-scale data workflows, and contributed to the modernization of legacy reinsurance systems—delivering solutions that combined efficiency with exceptional user experience.
-</p>
-
-<p>
-  Alongside my academic journey, I continue to explore projects that integrate <strong>cloud computing</strong>, <strong>cybersecurity</strong>, and <strong>frontend development</strong>, driven by a commitment to building practical and impactful solutions.
-</p>
-
-<h3>What I Do</h3>
-<ul>
-  <li>Optimize APIs and queries for efficiency</li>
-  <li>Design and develop interactive dashboards</li>
-  <li>Build and maintain full-stack applications</li>
-  <li>Experiment with cloud technologies and security solutions</li>
-  <li>Transform complex requirements into clean, effective UI/UX</li>
-</ul>
-
-<h3>Beyond Work</h3>
-<p>
-  In my free time, I enjoy competitive gaming, particularly <strong>Valorant</strong>, where I approach challenges with the same focus and problem-solving mindset I bring to engineering.
-</p>
-
-<h3>Let’s Connect</h3>
-<p>
-  Whether it’s collaborating on innovative projects, discussing threat detection, or exchanging ideas on technology, I am always open to meaningful conversations and new opportunities to create impactful solutions.
-</p>
-
+<section id="timeline" class="timeline-section">
+  <div class="section-container">
+    <div class="section-header">
+      <!-- <span class="section-label">Journey</span> -->
+      <h2 class="section-title">Experience Timeline</h2>
+    </div>
+    <app-experience-timeline></app-experience-timeline>
+  </div>
 </section>
 
-<section id="timeline">
-<app-experience-timeline></app-experience-timeline>
+<section id="projects" class="projects-section">
+  <div class="section-container">
+    <div class="section-header">
+      <!-- <span class="section-label">Portfolio</span> -->
+      <h2 class="section-title">Featured Projects</h2>
+    </div>
+    <app-projects></app-projects>
+  </div>
 </section>
 
-<section id="projects">
-<app-projects></app-projects>
-</section>
-<section id="skills">
-<app-skills></app-skills>
+<section id="skills" class="skills-section-wrapper">
+  <div class="section-container">
+    <div class="section-header">
+      <!-- <span class="section-label">Expertise</span> -->
+      <h2 class="section-title">Technical Arsenal</h2>
+    </div>
+    <app-skills></app-skills>
+  </div>
 </section>
 
-<section id="contact">
-<app-contact></app-contact>
+<section id="contact" class="contact-section-wrapper">
+  <div class="section-container">
+    <div class="section-header">
+      <!-- <span class="section-label">Get In Touch</span> -->
+      <h2 class="section-title">Let's Build Something Secure</h2>
+    </div>
+    <app-contact></app-contact>
+  </div>
 </section>

@@ -1,40 +1,235 @@
-<section class="animated-timeline" id="experience">
-  <h2 class="timeline-heading"> My Journey</h2>
-  <div class="timeline-wrapper">
-    <div class="timeline-entry left" data-animate>
-      <div class="timeline-icon">🎓</div>
+<div class="timeline-container">
+  <div class="timeline">
+    <!-- Timeline Item 1: Graduate Studies -->
+    <div class="timeline-item" 
+         [class.expanded]="expandedItems.has(0)">
+      <div class="timeline-marker education">
+        <mat-icon>school</mat-icon>
+      </div>
+      
       <div class="timeline-content">
-        <h3>MS in Cybersecurity</h3>
-        <span>2025 – Present • Northeastern University, Boston</span>
-        <p>On my way</p>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Sep 2025 - Present</div>
+            <div class="timeline-status current">Current</div>
+          </div>
+          <h3 class="timeline-title">MS in Cybersecurity</h3>
+          <h4 class="timeline-org">Northeastern University, Boston, MA</h4>
+          <p class="timeline-gpa">CGPA: <strong>3.83</strong>/4.0</p>
+          
+          <!-- Expand/Collapse Indicator - Only this is clickable -->
+          <div class="expand-indicator" (click)="toggleExpand(0); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(0) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(0) ? 'Show Less' : 'Show More' }}</span>
+          </div>
+        </div>
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(0) ? 'expanded' : 'collapsed'">
+          <p><strong>Key Coursework:</strong></p>
+          <ul class="coursework-list">
+            <li>Network Security (Firewalls, VPNs, Wireless Security, Threat Detection)</li>
+            <li>Security Fundamentals & Compliance (CIA Triad, GDPR, Security Governance)</li>
+            <li>Critical Infrastructure Protection (Risk Management, NIST CSF 2.0, DHS Frameworks)</li>
+            <li>Cybersecurity Technologies (Linux Administration, Scripting, Cloud Security)</li>
+          </ul>
+
+          <div class="timeline-tags">
+            <span class="tag security">Network Security</span>
+            <span class="tag security">Compliance</span>
+            <span class="tag security">Infrastructure Protection</span>
+            <span class="tag security">Cloud Security</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="timeline-entry right" data-animate>
-      <div class="timeline-icon">💻</div>
+    <!-- Timeline Item 2: TCS Systems Engineer -->
+    <div class="timeline-item"
+         [class.expanded]="expandedItems.has(1)">
+      <div class="timeline-marker security">
+        <mat-icon>security</mat-icon>
+      </div>
+      
       <div class="timeline-content">
-        <h3>UI Developer  TCS</h3>
-        <span>2022 – 2025 • Bangalore, India</span>
-        <p>Architected and optimized scalable Angular UIs for reinsurance systems.</p>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Aug 2022 - Aug 2025</div>
+            <div class="timeline-duration">3 years</div>
+          </div>
+          <h3 class="timeline-title">Systems Engineer</h3>
+          <h4 class="timeline-org">Tata Consultancy Services, India</h4>
+          
+          <div class="expand-indicator" (click)="toggleExpand(1); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(1) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(1) ? 'Show Less' : 'Show More' }}</span>
+          </div>
+        </div>
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(1) ? 'expanded' : 'collapsed'">
+          <p class="project-desc">
+            Developed and secured Life & Health reinsurance application for a global leader, 
+            ensuring compliance with financial services security standards.
+          </p>
+
+          <div class="achievements">
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <mat-icon>verified_user</mat-icon>
+              </div>
+              <div class="achievement-content">
+                <strong>Security Enhancement</strong>
+                <p>Performed secure code reviews and mitigated UI-layer vulnerabilities (XSS, IDOR, CSRF) 
+                   during legacy GWT to Angular migration</p>
+                <div class="achievement-metric">
+                  <span class="metric-value">40%</span>
+                  <span class="metric-label">improvement in security & performance</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <mat-icon>integration_instructions</mat-icon>
+              </div>
+              <div class="achievement-content">
+                <strong>Secure API Integration</strong>
+                <p>Integrated REST and GraphQL APIs with strict access-control validation 
+                   and input sanitization</p>
+              </div>
+            </div>
+
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <mat-icon>speed</mat-icon>
+              </div>
+              <div class="achievement-content">
+                <strong>DevSecOps Implementation</strong>
+                <p>Supported Agile/DevSecOps workflows with continuous patching, linting, 
+                   and dependency-scanning best practices</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-tags">
+            <span class="tag security">Angular</span>
+            <span class="tag security">Security</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag security">OWASP</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag security">DevSecOps</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="timeline-entry left" data-animate>
-      <div class="timeline-icon">📱</div>
+    <!-- Timeline Item 3: TCS Python Developer Intern -->
+    <div class="timeline-item"
+         [class.expanded]="expandedItems.has(2)">
+      <div class="timeline-marker development">
+        <mat-icon>code</mat-icon>
+      </div>
+      
       <div class="timeline-content">
-        <h3>Flutter Dev Intern</h3>
-        <span>2020 – 2022 • ByteHead</span>
-        <p>Developed cross-platform apps with Firebase, Dart & beautiful UI.</p>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Mar 2022 - Jun 2022</div>
+            <div class="timeline-duration">4 months</div>
+          </div>
+          <h3 class="timeline-title">Python Developer Intern</h3>
+          <h4 class="timeline-org">Tata Consultancy Services, Remote</h4>
+          
+          <div class="expand-indicator" (click)="toggleExpand(2); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(2) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(2) ? 'Show Less' : 'Show More' }}</span>
+          </div>
+        </div>
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(2) ? 'expanded' : 'collapsed'">
+          <div class="achievements">
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <mat-icon>auto_awesome</mat-icon>
+              </div>
+              <div class="achievement-content">
+                <strong>Automation</strong>
+                <p>Automated secure web data extraction with Python, reducing manual effort by 80%</p>
+              </div>
+            </div>
+
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <mat-icon>shield_check</mat-icon>
+              </div>
+              <div class="achievement-content">
+                <strong>Security Implementation</strong>
+                <p>Implemented validation, error-handling, and sanitization to prevent 
+                   injection and insecure deserialization issues</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-tags">
+            <span class="tag security">Python</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag security">Input Validation</span>
+            <span class="tag">Automation</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <div class="timeline-entry right" data-animate>
-      <div class="timeline-icon">👨‍🎓</div>
+    <!-- Timeline Item 4: Bachelor's Degree -->
+    <div class="timeline-item"
+         [class.expanded]="expandedItems.has(3)">
+      <div class="timeline-marker education">
+        <mat-icon>school</mat-icon>
+      </div>
+      
       <div class="timeline-content">
-        <h3>B.Tech in CSE</h3>
-        <span>2018 – 2022 • MACE, Kothamangalam</span>
-        <p>Graduated with 8.12 CGPA. Built hybrid deep learning IDS for capstone.</p>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Jun 2018 - Aug 2022</div>
+            <div class="timeline-duration">4 years</div>
+          </div>
+          <h3 class="timeline-title">Bachelor of Technology in Computer Science</h3>
+          <h4 class="timeline-org">Mar Athanasius College of Engineering, Kerala, India</h4>
+          <p class="timeline-gpa">CGPA: <strong>8.12</strong>/10.0</p>
+          
+          <div class="expand-indicator" (click)="toggleExpand(3); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(3) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(3) ? 'Show Less' : 'Show More' }}</span>
+          </div>
+        </div>
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(3) ? 'expanded' : 'collapsed'">
+          <div class="achievements">
+            <div class="achievement-item">
+              <div class="achievement-icon">
+                <mat-icon>science</mat-icon>
+              </div>
+              <div class="achievement-content">
+                <strong>Final Year Project</strong>
+                <p>Intrusion Detection System Using Hybrid Deep Learning - designed and trained 
+                   IDS to identify DDoS, port scanning, and botnet activity</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="timeline-tags">
+            <span class="tag">Computer Science</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag security">Network Security</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
-</section>
+</div>

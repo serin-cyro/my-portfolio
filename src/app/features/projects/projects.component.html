@@ -1,25 +1,248 @@
-<div class="projects-section">
-   <h2>Projects</h2>
+<div class="projects-container">
+  <!-- Carousel Controls -->
+  <div class="carousel-wrapper">
+    <button class="carousel-btn prev" (click)="previousProject()">
+      <mat-icon>chevron_left</mat-icon>
+    </button>
 
-  <div class="timeline-container">
-    <div class="timeline-line"></div>
+    <div class="carousel-track">
+      <div class="carousel-slides" [style.transform]="getTransform()">
+        
+        <div class="carousel-slide">
+          <div class="project-card featured">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge security">
+                  <mat-icon>shield</mat-icon>
+                  Security Research
+                </span>
+                <span class="badge featured-badge">Featured</span>
+              </div>
+              
+              <div class="project-image-placeholder security-bg">
+                <mat-icon class="project-icon">security</mat-icon>
+                <div class="project-overlay-text">Network Analysis</div>
+              </div>
+            </div>
 
-    <div class="timeline-item" *ngFor="let project of projectTimeline; let i = index" [ngClass]="{ 'left': i % 2 === 0, 'right': i % 2 !== 0 }">
-      <div class="timeline-dot"></div>
-      <mat-expansion-panel class="timeline-card" [expanded]="true">
-        <mat-expansion-panel-header>
-          <mat-panel-title>
-            {{ project.title }}
-          </mat-panel-title>
-          <mat-panel-description>
-            {{ project.role }} — {{ project.period }}
-          </mat-panel-description>
-        </mat-expansion-panel-header>
-        <p>{{ project.description }}</p>
-        <p><strong>{{ project.organization }}</strong></p>
-        <p><em>{{ project.details }}</em></p>
-      </mat-expansion-panel>
+            <div class="project-content">
+              <h3 class="project-title">WMATA Metro Critical Infrastructure Analysis</h3>
+              <p class="project-description">
+                Cyber-physical network vulnerability assessment of Washington Metro transit system. 
+                Identified high-risk chokepoints using graph theory and applied NIST CSF 2.0 & DHS frameworks.
+              </p>
+
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Network Analysis</span>
+                <span class="tech-tag">NIST CSF</span>
+                <span class="tech-tag">Graph Theory</span>
+              </div>
+
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Calculated spectral radius & betweenness centrality</span>
+                </div>
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Modeled cascading failure scenarios</span>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <button mat-raised-button class="btn-primary">
+                  <mat-icon>article</mat-icon>
+                  <span>View Details</span>
+                </button>
+                <button mat-stroked-button class="btn-secondary">
+                  <mat-icon>code</mat-icon>
+                  <span>Source Code</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="project-card featured">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge security">
+                  <mat-icon>bug_report</mat-icon>
+                  Machine Learning
+                </span>
+              </div>
+              
+              <div class="project-image-placeholder ml-bg">
+                <mat-icon class="project-icon">psychology</mat-icon>
+                <div class="project-overlay-text">Deep Learning IDS</div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Hybrid Deep Learning IDS</h3>
+              <p class="project-description">
+                Designed intrusion detection system using hybrid deep learning to identify DDoS attacks, 
+                port scanning, and botnet activity. Mapped detection logic to MITRE ATT&CK framework.
+              </p>
+
+              <div class="project-tech">
+                <span class="tech-tag">Python</span>
+                <span class="tech-tag">Deep Learning</span>
+                <span class="tech-tag">TensorFlow</span>
+                <span class="tech-tag">MITRE ATT&CK</span>
+              </div>
+
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Reduced false positives through feature engineering</span>
+                </div>
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Real-time threat detection & classification</span>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <button mat-raised-button class="btn-primary">
+                  <mat-icon>launch</mat-icon>
+                  <span>Live Demo</span>
+                </button>
+                <button mat-stroked-button class="btn-secondary">
+                  <mat-icon>code</mat-icon>
+                  <span>GitHub</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="carousel-slide">
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge development">
+                  <mat-icon>business</mat-icon>
+                  Enterprise
+                </span>
+              </div>
+              
+              <div class="project-image-placeholder enterprise-bg">
+                <mat-icon class="project-icon">corporate_fare</mat-icon>
+                <div class="project-overlay-text">Enterprise Platform</div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Secure Reinsurance Platform Migration</h3>
+              <p class="project-description">
+                Led frontend migration from legacy GWT to modern Angular architecture for global 
+                reinsurance platform. Implemented secure authentication and mitigated UI vulnerabilities.
+              </p>
+
+              <div class="project-tech">
+                <span class="tech-tag">Angular</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Security</span>
+                <span class="tech-tag">GraphQL</span>
+              </div>
+
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>40% improvement in security & performance</span>
+                </div>
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Mitigated XSS, IDOR, CSRF vulnerabilities</span>
+                </div>
+              </div>
+
+              <div class="project-actions">
+                <button mat-stroked-button class="btn-secondary" disabled>
+                  <mat-icon>lock</mat-icon>
+                  <span>Proprietary</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <div class="carousel-slide">
+          <div class="project-card">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge development">
+                  <mat-icon>web</mat-icon>
+                  Web Development
+                </span>
+              </div>
+              
+              <div class="project-image-placeholder portfolio-bg">
+                <mat-icon class="project-icon">palette</mat-icon>
+                <div class="project-overlay-text">Modern Portfolio</div>
+              </div>
+            </div>
+
+            <div class="project-content">
+              <h3 class="project-title">Modern Portfolio Website</h3>
+              <p class="project-description">
+                Designed and developed responsive portfolio website with modern animations, 
+                glassmorphism effects, and optimal performance. Built with Angular.
+              </p>
+
+              <div class="project-tech">
+                <span class="tech-tag">Angular</span>
+                <span class="tech-tag">SCSS</span>
+                <span class="tech-tag">TypeScript</span>
+                <span class="tech-tag">Material UI</span>
+              </div>
+
+              <div class="project-actions">
+                <button mat-raised-button class="btn-primary">
+                  <mat-icon>launch</mat-icon>
+                  <span>Live Site</span>
+                </button>
+                <button mat-stroked-button class="btn-secondary">
+                  <mat-icon>code</mat-icon>
+                  <span>Source</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
     </div>
+
+    <button class="carousel-btn next" (click)="nextProject()">
+      <mat-icon>chevron_right</mat-icon>
+    </button>
+  </div>
+
+  <div class="carousel-indicators">
+    <button 
+      *ngFor="let page of [0, 1, 2]; let i = index"
+      class="indicator"
+      [class.active]="i === currentIndex"
+      (click)="goToProject(i)">
+    </button>
+  </div>
+
+  <div class="project-counter">
+    <span class="current">{{ getCurrentProjectNumbers() }}</span>
+    <span class="divider">of</span>
+    <span class="total">{{ totalProjects }}</span>
+  </div>
+
+  <div class="more-projects">
+    <a href="https://github.com/serin-cyro?tab=repositories" target="_blank" class="more-link">
+      <span>View All Projects on GitHub</span>
+      <mat-icon>arrow_forward</mat-icon>
+    </a>
   </div>
 </div>
-

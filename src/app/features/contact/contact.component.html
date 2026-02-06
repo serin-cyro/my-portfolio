@@ -1,35 +1,105 @@
-<div class="contact">
-  <div class="contact-card">
-    <h2>Let’s Connect</h2>
-    <p>I’m always up for new ideas, collaboration, or even just a quick tech chat. Drop me a message or explore my work.</p>
+<div class="contact-container">
+  <div class="contact-intro">
+    <p class="contact-tagline">
+      Open to <strong>Security Engineering</strong>, <strong>Application Security</strong>, 
+      and <strong>Cloud Security</strong> opportunities starting Summer 2026
+    </p>
+  </div>
 
-    <div class="contact-links">
-      <a href="mailto:serintony@gmail.com" target="_blank">
-        <mat-icon>email</mat-icon>  Gmail
-      </a>
-      <a href="https://www.linkedin.com/in/serin-tony/" target="_blank">
-        <mat-icon svgIcon="linkedin"></mat-icon> LinkedIn
-      </a>
-      <a href="https://github.com/serin-cyro" target="_blank">
-        <mat-icon svgIcon="github"></mat-icon> GitHub
-      </a>
-    </div>
+  <!-- Contact Cards Grid -->
+  <div class="contact-grid">
+    <a href="mailto:tony.s@northeastern.edu" class="contact-card">
+      <div class="card-icon">
+        <mat-icon>email</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>Email</h3>
+        <p>tony.s &#64;northeastern.edu</p>
+      </div>
+      <div class="card-arrow">
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </a>
 
-    <!-- Mobile-only resume buttons -->
-    <div class="resume-buttons mobile-contact" *ngIf="isMobile">
-      <a href="assets/resume.pdf" target="_blank" mat-stroked-button color="accent">
-        <mat-icon>visibility</mat-icon>&nbsp;View Resume
+    <a href="https://www.linkedin.com/in/serin-tony/" target="_blank" class="contact-card">
+      <div class="card-icon">
+        <mat-icon>person</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>LinkedIn</h3>
+        <p>Connect professionally</p>
+      </div>
+      <div class="card-arrow">
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </a>
+
+    <a href="https://github.com/serin-cyro" target="_blank" class="contact-card">
+      <div class="card-icon">
+        <mat-icon>code</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>GitHub</h3>
+        <p>View my projects</p>
+      </div>
+      <div class="card-arrow">
+        <mat-icon>arrow_forward</mat-icon>
+      </div>
+    </a>
+
+    <a href="assets/resume.pdf" download class="contact-card primary">
+      <div class="card-icon">
+        <mat-icon>description</mat-icon>
+      </div>
+      <div class="card-content">
+        <h3>Resume</h3>
+        <p>Download PDF</p>
+      </div>
+      <div class="card-arrow">
+        <mat-icon>download</mat-icon>
+      </div>
+    </a>
+  </div>
+
+  <!-- Additional Links -->
+  <div class="additional-links">
+    <h3>Find Me On</h3>
+    <div class="links-grid">
+      <a href="https://tryhackme.com/p/4theAg3nt" target="_blank" class="link-item">
+        <img src="https://cdn.simpleicons.org/tryhackme/88cc14" alt="TryHackMe" />
+        <span>TryHackMe</span>
+        <small>Top 8%</small>
       </a>
-      <a href="assets/resume.pdf" download mat-flat-button color="primary">
-        <mat-icon>download</mat-icon>&nbsp;Download
+
+      <a href="https://www.hackthebox.com" target="_blank" class="link-item">
+        <img src="https://cdn.simpleicons.org/hackthebox/9FEF00" alt="HackTheBox" />
+        <span>HackTheBox</span>
+        <small>Active Member</small>
       </a>
-      <br/>
-      <br/>
-      <br/>
-      <br/>
-      
+
+      <a href="https://bugcrowd.com" target="_blank" class="link-item">
+        <img src="https://cdn.simpleicons.org/bugcrowd/F26822" alt="BugCrowd" />
+        <span>BugCrowd</span>
+        <small>Security Researcher</small>
+      </a>
     </div>
   </div>
+
+  <!-- Status Bar -->
+  <!-- <div class="status-bar">
+    <div class="status-indicator">
+      <span class="status-dot pulsing"></span>
+      <span class="status-text">Available for opportunities • Summer 2026</span>
+    </div>
+    <div class="location">
+      <mat-icon>location_on</mat-icon>
+      <span>Boston, MA</span>
+    </div>
+  </div> -->
+
+
+  <div class="response-info">
+    <mat-icon>schedule</mat-icon>
+    <p>I typically respond within <strong>24 hours</strong></p>
+  </div>
 </div>
-
-

@@ -1,55 +1,69 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { MatIconModule } from '@angular/material/icon';
+import { trigger, state, style, transition, animate } from '@angular/animations';
 
 @Component({
   selector: 'app-experience-timeline',
-  imports: [],
+  standalone: true,
+  imports: [CommonModule, MatIconModule],
   templateUrl: './experience-timeline.component.html',
-  styleUrl: './experience-timeline.component.scss'
+  styleUrls: ['./experience-timeline.component.scss'],
+  animations: [
+    trigger('expandCollapse', [
+      state('collapsed', style({
+        height: '0',
+        opacity: '0',
+        overflow: 'hidden',
+        marginTop: '0'
+      })),
+      state('expanded', style({
+        height: '*',
+        opacity: '1',
+        overflow: 'visible',
+        marginTop: '1.5rem'
+      })),
+      transition('collapsed <=> expanded', [
+        animate('300ms cubic-bezier(0.4, 0, 0.2, 1)')
+      ])
+    ])
+  ]
 })
 export class ExperienceTimelineComponent {
-  experienceTimeline = [
-    {
-      title: 'MS in Cybersecurity',
-      role: 'Graduate Student',
-      year: '2025 - Present',
-      organization: 'Friedrich-Alexander University Erlangen-Nürnberg (FAU)',
-      description: 'Specializing in threat detection, cloud security, and zero trust architecture.'
-    },
-    {
-      title: 'UI Developer',
-      role: 'Software Engineer',
-      year: '2022 - Present',
-      organization: 'Tata Consultancy Services',
-      description: 'Developing sleek, performant UIs and optimizing large-scale reinsurance workflows.'
-    },
-    {
-      title: 'B.Tech in Computer Science',
-      role: 'Undergraduate',
-      year: '2018 - 2022',
-      organization: 'Mahatma Gandhi University',
-      description: 'Graduated with strong fundamentals in data structures, networks, and AI-based IDS.'
+  // Track which items are expanded using a Set
+  expandedItems: Set<number> = new Set();
+
+  /**
+   * Toggle expansion state of a timeline item
+   */
+  toggleExpand(index: number): void {
+    if (this.expandedItems.has(index)) {
+      this.expandedItems.delete(index);
+    } else {
+      this.expandedItems.add(index);
     }
-  ];
-ngAfterViewInit() {
-  const observer = new IntersectionObserver(
-    (entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-        }
-      });
-    },
-    {
-      threshold: 0.2,
-    }
-  );
+    // Force change detection by creating new Set reference
+    this.expandedItems = new Set(this.expandedItems);
+  }
 
-  document.querySelectorAll('[data-animate]').forEach((el) => {
-    observer.observe(el);
-  });
-}
+  /**
+   * Check if an item is expanded
+   */
+  isExpanded(index: number): boolean {
+    return this.expandedItems.has(index);
+  }
 
+  /**
+   * Expand all items
+   */
+  expandAll(): void {
+    this.expandedItems = new Set([0, 1, 2, 3]);
+  }
 
+  /**
+   * Collapse all items
+   */
+  collapseAll(): void {
+    this.expandedItems.clear();
+  }
 }

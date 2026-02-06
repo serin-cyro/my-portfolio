@@ -1,49 +1,114 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { MatCardModule } from '@angular/material/card';
+import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
-import { MatExpansionModule } from '@angular/material/expansion';
 
 @Component({
   selector: 'app-projects',
   standalone: true,
-  imports: [CommonModule, MatCardModule, MatIconModule, MatExpansionModule],
+  imports: [CommonModule, MatButtonModule, MatIconModule],
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent {
-  projectTimeline = [
-    {
-      title: 'Portfolio Website',
-      role: 'UI Developer',
-      period: '2025',
-      description: 'Interactive Angular portfolio with particles, dark theme, and scroll animations.',
-      organization: 'Personal',
-      details: 'Angular 19 standalone architecture, GitHub Pages deployment, responsive across devices.'
-    },
-    {
-      title: 'Hybrid Intrusion Detection System',
-      role: 'Capstone Project',
-      period: '2022',
-      description: 'Built and trained a hybrid CNN-LSTM model for real-time IDS.',
-      organization: 'B Tech Computer Science',
-      details: 'Implemented deception grids, anomaly detection with LSTM, and integrated with Azure Sentinel.'
-    },
-    {
-      title: 'Hitch a Ride -Flutter Application',
-      role: 'Flutter Developer',
-      period: '2021',
-      description: 'A ride sharing application that helps drivers and riders connect with each other',
-      organization: 'Personal',
-      details: 'Passenger-Driver Matching: Algorithm for detecting and pairing users going to similar destinations'
-    },
-    {
-      title: 'Day Track',
-      role: 'Flutter Developer',
-      period: '2020',
-      description: 'A tracking application to get the count of people visiting a place during Covid-19',
-      organization: 'Bytehead Internship',
-      details: 'Daily Summary: Users can track their personal visit patterns with visual summaries.Alerts for exceeding visitor thresholds if needed.'
-    }
+export class ProjectsComponent implements OnInit {
+  currentIndex: number = 0;
+  totalProjects: number = 4;
+  
+  // Project data for indicators (can be expanded with more details)
+  projects = [
+    { id: 1, title: 'WMATA Metro Analysis' },
+    { id: 2, title: 'Hybrid Deep Learning IDS' },
+    { id: 3, title: 'Secure Reinsurance Platform' },
+    { id: 4, title: 'Modern Portfolio Website' }
   ];
+
+  // Auto-play settings (optional)
+  autoPlayInterval: any;
+  autoPlayEnabled: boolean = false;
+  autoPlayDelay: number = 5000; // 5 seconds
+
+  ngOnInit(): void {
+    if (this.autoPlayEnabled) {
+      this.startAutoPlay();
+    }
+  }
+
+  ngOnDestroy(): void {
+    this.stopAutoPlay();
+  }
+
+  nextProject(): void {
+    if (this.currentIndex < this.totalProjects - 2) {
+      this.currentIndex++;
+    } else {
+      this.currentIndex = 0;  // Loop back to start
+    }
+    this.resetAutoPlay();
+  }
+
+  previousProject(): void {
+    if (this.currentIndex > 0) {
+      this.currentIndex--;
+    } else {
+      this.currentIndex = this.totalProjects - 2;  // Loop to last pair
+    }
+    this.resetAutoPlay();
+  }
+
+  goToProject(index: number): void {
+    this.currentIndex = index;
+    this.resetAutoPlay();
+  }
+
+  startAutoPlay(): void {
+    this.autoPlayInterval = setInterval(() => {
+      if (this.currentIndex < this.totalProjects - 2) {
+        this.nextProject();
+      } else {
+        this.currentIndex = 0; // Loop back to start
+      }
+    }, this.autoPlayDelay);
+  }
+
+  stopAutoPlay(): void {
+    if (this.autoPlayInterval) {
+      clearInterval(this.autoPlayInterval);
+    }
+  }
+
+  resetAutoPlay(): void {
+    if (this.autoPlayEnabled) {
+      this.stopAutoPlay();
+      this.startAutoPlay();
+    }
+  }
+
+  onKeyDown(event: KeyboardEvent): void {
+    if (event.key === 'ArrowLeft') {
+      this.previousProject();
+    } else if (event.key === 'ArrowRight') {
+      this.nextProject();
+    }
+  }
+
+  getEndIndex(): number {
+    return Math.min(this.currentIndex + 2, this.totalProjects);
+  }
+
+
+  getCurrentProjectNumbers(): string {
+    const start = this.currentIndex + 1;
+    const end = Math.min(this.currentIndex + 2, this.totalProjects);
+    
+    if (start === end) {
+      return `${start}`;
+    }
+    return `${start}-${end}`;
+  }
+
+  getTransform(): string {
+    const percentShift = this.currentIndex * 50;
+    const gapShift = this.currentIndex * 1.5;
+    return `translateX(calc(-${percentShift}% - ${gapShift}rem))`;
+  }
 }

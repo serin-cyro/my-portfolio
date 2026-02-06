@@ -1,5 +1,9 @@
 @import '../../../styles/design-system';
 
+// ========================================
+// BASE STYLES
+// ========================================
+
 * {
   margin: 0;
   padding: 0;
@@ -18,14 +22,18 @@ section {
   scroll-snap-align: start;
 }
 
+// ========================================
+// NAVIGATION - MOBILE RESPONSIVE
+// ========================================
+
 .modern-navbar {
   position: fixed;
   top: 0;
   left: 0;
   right: 0;
-  z-index: 1000;
+  z-index: 10002;  // Above drawer (10001) and backdrop (10000)
   padding: var(--space-md) var(--space-lg);
-  background: rgba(15, 23, 42, 0.9);
+  background: rgba(15, 23, 42, 0.95);
   backdrop-filter: blur(16px);
   border-bottom: 1px solid var(--color-border);
   transition: all var(--transition-base);
@@ -80,6 +88,11 @@ section {
     cursor: pointer;
     transition: all var(--transition-base);
     border-radius: var(--radius-sm);
+    
+    // Reset button styles
+    background: none;
+    border: none;
+    font-family: inherit;
 
     .link-text {
       position: relative;
@@ -114,6 +127,11 @@ section {
       .link-indicator {
         transform: translateX(-50%) scaleX(1);
       }
+    }
+
+    &:focus-visible {
+      outline: 2px solid var(--color-primary);
+      outline-offset: 2px;
     }
   }
 
@@ -164,16 +182,31 @@ section {
   // Mobile Navigation
   &.mobile {
     padding: var(--space-sm) var(--space-md);
-    
-    .navbar-content {
-      width: 100%;
-    }
   }
 
-  .mobile-nav {
-    flex: 1;
+  .mobile-header {
     display: flex;
-    justify-content: flex-end;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+  }
+
+  .mobile-logo {
+    font-size: 1.3rem;
+    font-weight: 700;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+    font-family: var(--font-mono);
+
+    .logo-bracket {
+      color: var(--color-primary);
+    }
+
+    .logo-text {
+      font-weight: 800;
+    }
   }
 
   .menu-toggle {
@@ -184,7 +217,7 @@ section {
     justify-content: center;
     border-radius: var(--radius-sm);
     background: transparent;
-    border: 1px solid var(--color-border);
+    border: 1px solid rgba(148, 163, 184, 0.3);
     color: var(--color-text-primary);
     cursor: pointer;
     transition: all var(--transition-base);
@@ -195,90 +228,158 @@ section {
       height: 24px;
     }
 
-    &:hover,
-    &.active {
-      background: var(--color-primary);
+    &:hover {
+      background: rgba(59, 130, 246, 0.1);
       border-color: var(--color-primary);
-      color: white;
+      color: var(--color-primary);
     }
   }
 }
 
-// Mobile Menu Overlay
-.mobile-menu-overlay {
+// Mobile Menu Drawer (slides from right)
+.mobile-menu-drawer {
   position: fixed;
-  top: 70px;
-  left: 0;
+  top: 0;
   right: 0;
   bottom: 0;
-  background: rgba(15, 23, 42, 0.98);
-  backdrop-filter: blur(20px);
-  z-index: 999;
+  width: 300px;
+  max-width: 80vw;
+  background: #0f172a;
+  border-left: 1px solid rgba(148, 163, 184, 0.2);
+  z-index: 10001;  // Below navbar (10002), above backdrop (10000)
+  box-shadow: -4px 0 24px rgba(0, 0, 0, 0.6);
   overflow-y: auto;
+  padding-top: 70px;  // Space for navbar to show on top
 
-  .mobile-menu-content {
-    padding: var(--space-xl) var(--space-md);
+  .drawer-content {
     display: flex;
     flex-direction: column;
-    gap: var(--space-xs);
+    height: calc(100% - 70px);
+    padding: var(--space-lg);
   }
 
-  .mobile-nav-link {
-    padding: var(--space-md) var(--space-lg);
-    background: rgba(30, 41, 59, 0.5);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    color: var(--color-text-primary);
-    font-size: 1.1rem;
-    font-weight: 500;
-    text-decoration: none;
-    text-align: center;
-    transition: all var(--transition-fast);
-
-    &:hover,
-    &.active {
-      background: rgba(59, 130, 246, 0.15);
-      border-color: var(--color-primary);
-      color: var(--color-primary);
-      transform: translateX(4px);
-    }
-  }
-
-  .mobile-menu-actions {
+  .drawer-menu {
     display: flex;
     flex-direction: column;
-    gap: var(--space-sm);
-    margin-top: var(--space-lg);
-    padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-border);
+    gap: 4px;
+    flex: 1;
+    padding-top: var(--space-md);  // Add top padding since no header
   }
 
-  .mobile-action-btn {
+  .drawer-link {
     display: flex;
     align-items: center;
-    justify-content: center;
-    gap: var(--space-sm);
-    padding: var(--space-md);
-    background: var(--color-primary);
-    border-radius: var(--radius-md);
-    color: white;
-    font-weight: 600;
-    text-decoration: none;
-    transition: all var(--transition-base);
+    gap: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
+    background: transparent;
+    border: none;
+    border-radius: var(--radius-sm);
+    color: var(--color-text-secondary);
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-align: left;
+    transition: all var(--transition-fast);
+    cursor: pointer;
+    font-family: inherit;
 
     mat-icon {
       font-size: 20px;
       width: 20px;
       height: 20px;
+      color: var(--color-text-muted);
+      transition: color var(--transition-fast);
+    }
+
+    span {
+      flex: 1;
     }
 
     &:hover {
-      background: var(--color-primary-dark);
-      transform: translateY(-2px);
-      box-shadow: var(--shadow-md);
+      background: rgba(59, 130, 246, 0.08);
+      color: var(--color-text-primary);
+
+      mat-icon {
+        color: var(--color-primary);
+      }
+    }
+
+    &.active {
+      background: rgba(59, 130, 246, 0.15);
+      color: var(--color-primary);
+      font-weight: 600;
+
+      mat-icon {
+        color: var(--color-primary);
+      }
+    }
+  }
+
+  .drawer-actions {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-sm);
+    margin-top: auto;
+    padding-top: var(--space-lg);
+    border-top: 1px solid rgba(148, 163, 184, 0.2);
+  }
+
+  .drawer-action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-sm);
+    padding: var(--space-md);
+    border-radius: var(--radius-md);
+    font-weight: 600;
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all var(--transition-base);
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+    }
+
+    &.primary {
+      background: var(--color-primary);
+      color: white;
+
+      &:hover {
+        background: var(--color-primary-dark);
+        transform: translateY(-2px);
+      }
+    }
+
+    &.secondary {
+      background: transparent;
+      border: 2px solid rgba(148, 163, 184, 0.3);
+      color: var(--color-text-secondary);
+
+      &:hover {
+        border-color: var(--color-primary);
+        color: var(--color-primary);
+      }
     }
   }
 }
+
+// Backdrop overlay
+.menu-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 10000;
+  cursor: pointer;
+  animation: fadeIn 0.3s ease;
+}
+
+// ========================================
+// HERO SECTION - REFINED
+// ========================================
 
 .hero-section {
   min-height: 100vh;
@@ -1092,6 +1193,9 @@ section {
   }
 }
 
+// ========================================
+// SECTION HEADERS (Shared) - REFINED
+// ========================================
 
 .section-header {
   text-align: center;
@@ -1120,9 +1224,13 @@ section {
   }
 }
 
+// ========================================
+// GLOBAL UTILITIES
+// ========================================
+
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 100px; 
+  scroll-padding-top: 100px;  // Increased from 80px for better spacing
 }
 
 ::selection {

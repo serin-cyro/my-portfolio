@@ -1,3 +1,6 @@
+<!-- ========================================
+     NAVIGATION - MOBILE RESPONSIVE
+     ======================================== -->
 <nav class="modern-navbar" [class.mobile]="isMobile">
   <div class="navbar-content">
     <!-- Logo - Desktop only -->
@@ -9,19 +12,26 @@
 
     <!-- Desktop Navigation -->
     <div class="nav-links" *ngIf="!isMobile">
-      <a 
+      <button 
         *ngFor="let section of sections"
         class="nav-link"
         [class.active]="currentSection === section.id"
-        (click)="scrollTo(section.id); $event.preventDefault()">
+        (click)="scrollTo(section.id)"
+        type="button">
         <span class="link-text">{{ section.label }}</span>
         <span class="link-indicator"></span>
-      </a>
+      </button>
     </div>
 
-    <!-- Mobile Navigation -->
-    <div class="mobile-nav" *ngIf="isMobile">
-      <button class="menu-toggle" (click)="toggleMobileMenu()" [class.active]="mobileMenuOpen">
+    <!-- Mobile - Logo and Hamburger -->
+    <div class="mobile-header" *ngIf="isMobile">
+      <div class="mobile-logo" (click)="scrollToTop()">
+        <span class="logo-bracket">&lt;</span>
+        <span class="logo-text gradient-text">ST</span>
+        <span class="logo-bracket">&gt;</span>
+      </div>
+      
+      <button class="menu-toggle" (click)="toggleMobileMenu()">
         <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
       </button>
     </div>
@@ -30,43 +40,94 @@
     <div class="nav-actions" *ngIf="!isMobile">
       <a href="assets/resume.pdf" target="_blank" 
          class="action-btn" 
-         matTooltip="View Resume">
+         data-tooltip="View Resume">
         <mat-icon>visibility</mat-icon>
       </a>
       <a href="assets/resume.pdf" download 
          class="action-btn primary" 
-         matTooltip="Download Resume">
+         data-tooltip="Download Resume">
         <mat-icon>download</mat-icon>
       </a>
     </div>
   </div>
-
-  <!-- Mobile Menu Overlay -->
-  <div class="mobile-menu-overlay" *ngIf="isMobile && mobileMenuOpen" [@slideIn]>
-    <div class="mobile-menu-content">
-      <a 
-        *ngFor="let section of sections"
-        class="mobile-nav-link"
-        [class.active]="currentSection === section.id"
-        (click)="scrollTo(section.id); $event.preventDefault()">
-        {{ section.label }}
-      </a>
-      
-      <div class="mobile-menu-actions">
-        <a href="assets/resume.pdf" target="_blank" class="mobile-action-btn">
-          <mat-icon>visibility</mat-icon>
-          <span>View Resume</span>
-        </a>
-        <a href="assets/resume.pdf" download class="mobile-action-btn">
-          <mat-icon>download</mat-icon>
-          <span>Download Resume</span>
-        </a>
-      </div>
-    </div>
-  </div>
 </nav>
 
+<!-- Mobile Menu Drawer - Redesigned -->
+<div class="mobile-menu-drawer" *ngIf="isMobile && mobileMenuOpen" [@slideIn]>
+  <div class="drawer-content">
+    <!-- Navigation Links with Icons -->
+    <div class="drawer-menu">
+      <button 
+        class="drawer-link"
+        [class.active]="currentSection === 'landing'"
+        (click)="scrollTo('landing')"
+        type="button">
+        <mat-icon>home</mat-icon>
+        <span>Home</span>
+      </button>
 
+      <button 
+        class="drawer-link"
+        [class.active]="currentSection === 'about'"
+        (click)="scrollTo('about')"
+        type="button">
+        <mat-icon>person</mat-icon>
+        <span>About</span>
+      </button>
+
+      <button 
+        class="drawer-link"
+        [class.active]="currentSection === 'timeline'"
+        (click)="scrollTo('timeline')"
+        type="button">
+        <mat-icon>work_history</mat-icon>
+        <span>Experience</span>
+      </button>
+
+      <button 
+        class="drawer-link"
+        [class.active]="currentSection === 'projects'"
+        (click)="scrollTo('projects')"
+        type="button">
+        <mat-icon>code</mat-icon>
+        <span>Projects</span>
+      </button>
+
+      <button 
+        class="drawer-link"
+        [class.active]="currentSection === 'skills'"
+        (click)="scrollTo('skills')"
+        type="button">
+        <mat-icon>psychology</mat-icon>
+        <span>Skills</span>
+      </button>
+
+      <button 
+        class="drawer-link"
+        [class.active]="currentSection === 'contact'"
+        (click)="scrollTo('contact')"
+        type="button">
+        <mat-icon>email</mat-icon>
+        <span>Contact</span>
+      </button>
+    </div>
+
+    <!-- Resume Actions -->
+    <div class="drawer-actions">
+      <a href="assets/resume.pdf" download class="drawer-action-btn primary">
+        <mat-icon>download</mat-icon>
+        <span>Download Resume</span>
+      </a>
+    </div>
+  </div>
+</div>
+
+<!-- Backdrop (click to close) -->
+<div class="menu-backdrop" *ngIf="isMobile && mobileMenuOpen" (click)="toggleMobileMenu()"></div>
+
+<!-- ========================================
+     HERO SECTION - BETTER MOBILE LAYOUT
+     ======================================== -->
 <section id="landing" class="hero-section">
   <div class="hero-background">
     <div class="grid-overlay"></div>
@@ -106,7 +167,7 @@
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <div class="stat-value">Top 5%</div>
+        <div class="stat-value">Top 8%</div>
         <div class="stat-label">TryHackMe</div>
       </div>
       <div class="stat-divider"></div>
@@ -148,7 +209,7 @@
         <mat-icon>email</mat-icon>
       </a>
       
-      <a href="https://tryhackme.com/p/4theAg3nt" 
+      <a href="https://tryhackme.com/p/serintony" 
          target="_blank" 
          class="social-link"
          data-tooltip="TryHackMe">
@@ -163,6 +224,9 @@
   </div>
 </section>
 
+<!-- ========================================
+     OTHER SECTIONS (Keep existing structure)
+     ======================================== -->
 <section id="about" class="about-section" [ngClass]="{'mobile-padding' : isMobile}">
   <div class="section-container">
     <div class="section-header">
@@ -198,7 +262,7 @@
         </div>
 
         <div class="impact-card">
-          <div class="impact-number gradient-text">Top 5%</div>
+          <div class="impact-number gradient-text">Top 8%</div>
           <div class="impact-label">TryHackMe Ranking</div>
           <div class="impact-detail">Active cybersecurity practitioner</div>
         </div>
@@ -296,7 +360,7 @@
 <section id="timeline" class="timeline-section">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Journey</span> -->
+      <span class="section-label">Journey</span>
       <h2 class="section-title">Experience Timeline</h2>
     </div>
     <app-experience-timeline></app-experience-timeline>
@@ -306,7 +370,7 @@
 <section id="projects" class="projects-section">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Portfolio</span> -->
+      <span class="section-label">Portfolio</span>
       <h2 class="section-title">Featured Projects</h2>
     </div>
     <app-projects></app-projects>
@@ -316,7 +380,7 @@
 <section id="skills" class="skills-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Expertise</span> -->
+      <span class="section-label">Expertise</span>
       <h2 class="section-title">Technical Arsenal</h2>
     </div>
     <app-skills></app-skills>
@@ -326,7 +390,7 @@
 <section id="contact" class="contact-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Get In Touch</span> -->
+      <span class="section-label">Get In Touch</span>
       <h2 class="section-title">Let's Build Something Secure</h2>
     </div>
     <app-contact></app-contact>

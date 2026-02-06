@@ -370,25 +370,63 @@ section {
     margin-bottom: var(--space-md);
     font-family: var(--font-display);
     letter-spacing: -0.02em;
+    color: #f1f5f9;  // Ensure full title is visible, not just gradient part
+
+    // Only apply gradient to the name
+    .gradient-text {
+      background: var(--gradient-primary);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
   }
 
   .hero-subtitle {
-    font-size: clamp(1.25rem, 3vw, 2rem);
+    font-size: clamp(1.5rem, 4vw, 2.5rem);
     font-weight: 600;
     color: var(--color-primary);
     margin-bottom: var(--space-md);
     font-family: var(--font-mono);
-    min-height: 50px;
+    min-height: 60px;
     display: flex;
     align-items: center;
     justify-content: center;
+    word-break: keep-all;  // Prevent breaking words
+    overflow-wrap: normal;  // Don't wrap in middle of words
+    
+    // Ensure typewriter text doesn't get cut off
+    ::ng-deep {
+      .typewriter-text {
+        white-space: nowrap;  // Keep role on one line if possible
+      }
+    }
+
+    @media (max-width: 768px) {
+      font-size: clamp(1.25rem, 5vw, 1.75rem);
+      min-height: 50px;
+    }
+
+    @media (max-width: 480px) {
+      font-size: 1.25rem;
+      min-height: 45px;
+      
+      // Allow wrapping on very small screens
+      ::ng-deep .typewriter-text {
+        white-space: normal;
+      }
+    }
   }
 
   .hero-tagline {
-    font-size: clamp(0.95rem, 2vw, 1.15rem);
-    color: var(--color-text-secondary);
+    font-size: clamp(1rem, 2vw, 1.25rem);
+    color: #cbd5e1;  // Lighter, more readable
     margin-bottom: var(--space-xl);
-    font-weight: 400;
+    font-weight: 500;  // Slightly bolder
+    line-height: 1.6;
+    
+    @media (max-width: 768px) {
+      font-size: 1rem;
+    }
   }
 
   .hero-stats {
@@ -398,16 +436,17 @@ section {
     gap: var(--space-lg);
     margin-bottom: var(--space-xl);
     padding: var(--space-lg);
-    background: rgba(30, 41, 59, 0.5);
-    border: 1px solid var(--color-border);
+    background: rgba(30, 41, 59, 0.6);
+    border: 1px solid rgba(148, 163, 184, 0.2);
     border-radius: var(--radius-lg);
     backdrop-filter: blur(10px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
 
     .stat-item {
       text-align: center;
 
       .stat-value {
-        font-size: 1.75rem;
+        font-size: clamp(1.5rem, 3vw, 2rem);  // Responsive sizing
         font-weight: 700;
         color: var(--color-primary);
         font-family: var(--font-display);
@@ -416,16 +455,28 @@ section {
       }
 
       .stat-label {
-        font-size: 0.8rem;
-        color: var(--color-text-muted);
+        font-size: clamp(0.75rem, 1.5vw, 0.85rem);  // Responsive sizing
+        color: #cbd5e1;  // More readable
         font-weight: 500;
+        white-space: nowrap;  // Prevent label wrapping
       }
     }
 
     .stat-divider {
       width: 1px;
       height: 35px;
-      background: var(--color-border);
+      background: rgba(148, 163, 184, 0.3);
+    }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      gap: var(--space-md);
+      padding: var(--space-md);
+
+      .stat-divider {
+        width: 50px;
+        height: 1px;
+      }
     }
   }
 
@@ -478,6 +529,16 @@ section {
         transform: translateY(-2px);
       }
     }
+
+    @media (max-width: 768px) {
+      flex-direction: column;
+      width: 100%;
+
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
   }
 
   .social-links {
@@ -487,6 +548,7 @@ section {
     align-items: center;
 
     .social-link {
+      position: relative;  // Needed for tooltip positioning
       width: 48px;
       height: 48px;
       display: flex;
@@ -507,6 +569,32 @@ section {
         color: inherit;
       }
 
+      // CSS-only tooltip
+      &::after {
+        content: attr(data-tooltip);
+        position: absolute;
+        bottom: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        padding: 6px 12px;
+        background: rgba(15, 23, 42, 0.95);
+        color: #f1f5f9;
+        font-size: 0.8rem;
+        font-weight: 600;
+        border-radius: 6px;
+        white-space: nowrap;
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.2s ease;
+        border: 1px solid rgba(59, 130, 246, 0.3);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      }
+
+      // Show tooltip on hover
+      &:hover::after {
+        opacity: 1;
+      }
+
       &:hover {
         border-color: var(--color-primary);
         background: rgba(59, 130, 246, 0.15);
@@ -514,38 +602,30 @@ section {
         transform: translateY(-4px);
         box-shadow: 0 4px 16px rgba(59, 130, 246, 0.3);
       }
+    }
 
-      // Specific colors for different platforms
-      &:nth-child(1) {
-        &:hover {
-          color: #f1f5f9;
-          background: rgba(255, 255, 255, 0.1);
-        }
-      }
+    // Specific colors for different platforms
+    .social-link:nth-child(1):hover {
+      color: #f1f5f9;
+      background: rgba(255, 255, 255, 0.1);
+    }
 
-      &:nth-child(2) {
-        &:hover {
-          color: #0A66C2;
-          background: rgba(10, 102, 194, 0.1);
-          border-color: #0A66C2;
-        }
-      }
+    .social-link:nth-child(2):hover {
+      color: #0A66C2;
+      background: rgba(10, 102, 194, 0.1);
+      border-color: #0A66C2;
+    }
 
-      &:nth-child(3) {
-        &:hover {
-          color: #EA4335;
-          background: rgba(234, 67, 53, 0.1);
-          border-color: #EA4335;
-        }
-      }
+    .social-link:nth-child(3):hover {
+      color: #EA4335;
+      background: rgba(234, 67, 53, 0.1);
+      border-color: #EA4335;
+    }
 
-      &:nth-child(4) {
-        &:hover {
-          color: #10b981;
-          background: rgba(16, 185, 129, 0.1);
-          border-color: #10b981;
-        }
-      }
+    .social-link:nth-child(4):hover {
+      color: #10b981;
+      background: rgba(16, 185, 129, 0.1);
+      border-color: #10b981;
     }
   }
 
@@ -592,28 +672,58 @@ section {
     padding: var(--space-xl) var(--space-md);
     padding-top: calc(70px + var(--space-lg));
 
+    .hero-title {
+      font-size: 2rem;
+      margin-bottom: var(--space-sm);
+    }
+
+    .hero-subtitle {
+      font-size: 1.5rem;
+      min-height: 50px;
+    }
+
+    .hero-tagline {
+      font-size: 0.95rem;
+    }
+
     .hero-stats {
       flex-direction: column;
       gap: var(--space-md);
       padding: var(--space-md);
+
+      .stat-item .stat-value {
+        font-size: 1.5rem;
+      }
 
       .stat-divider {
         width: 50px;
         height: 1px;
       }
     }
+  }
 
-    .hero-actions {
-      flex-direction: column;
-      width: 100%;
+  @media (max-width: 480px) {
+    .hero-title {
+      font-size: 1.75rem;
+    }
 
-      button {
-        width: 100%;
-        justify-content: center;
-      }
+    .hero-subtitle {
+      font-size: 1.25rem;
+    }
+
+    .status-badge {
+      font-size: 0.75rem;
+      padding: 6px var(--space-sm);
     }
   }
 }
+
+// Continue with other sections using similar refined styling...
+// (Keep the rest of your sections but with updated color variables)
+
+// ========================================
+// ABOUT SECTION - REFINED
+// ========================================
 
 .about-section {
   background: var(--color-bg-secondary);

@@ -43,6 +43,7 @@
   opacity: 0;
   transform: translateY(30px);
   animation: fadeInUp 0.6s ease forwards;
+  cursor: default;  // Normal cursor for the card
 
   @for $i from 1 through 10 {
     &:nth-child(#{$i}) {
@@ -54,6 +55,7 @@
     padding-bottom: 0;
   }
 
+  // Marker Icons
   .timeline-marker {
     position: absolute;
     left: 0;
@@ -76,23 +78,42 @@
     }
 
     &.security {
-      background: linear-gradient(135deg, #00ff88 0%, #00f0ff 100%);
-      box-shadow: 0 0 20px rgba(0, 255, 136, 0.4);
+      background: linear-gradient(135deg, #10b981 0%, #3b82f6 100%);
+      box-shadow: 0 0 20px rgba(16, 185, 129, 0.4);
     }
 
     &.development {
-      background: linear-gradient(135deg, #00f0ff 0%, #0088ff 100%);
-      box-shadow: 0 0 20px rgba(0, 240, 255, 0.4);
+      background: linear-gradient(135deg, #3b82f6 0%, #0ea5e9 100%);
+      box-shadow: 0 0 20px rgba(59, 130, 246, 0.4);
     }
 
     &.education {
-      background: linear-gradient(135deg, #ff2e97 0%, #ff6b00 100%);
-      box-shadow: 0 0 20px rgba(255, 46, 151, 0.4);
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      box-shadow: 0 0 20px rgba(139, 92, 246, 0.4);
     }
   }
 
+  // Marker hover (keep this for visual interest)
   &:hover .timeline-marker {
     transform: scale(1.15) rotate(10deg);
+  }
+
+  // Expanded state
+  &.expanded {
+    .timeline-content {
+      border-color: var(--color-primary);
+      box-shadow: 0 8px 24px rgba(59, 130, 246, 0.2);
+      background: rgba(30, 41, 59, 0.8);
+    }
+
+    .timeline-marker {
+      transform: scale(1.2);
+    }
+
+    // Remove the rotation - Angular Material icons already swap correctly
+    .expand-indicator {
+      color: var(--color-primary);
+    }
   }
 
   @media (max-width: 768px) {
@@ -112,19 +133,16 @@
 }
 
 .timeline-content {
-  background: var(--color-bg-card);
-  border: 1px solid var(--color-border);
+  background: rgba(30, 41, 59, 0.6);
+  border: 1px solid rgba(148, 163, 184, 0.2);
   border-radius: var(--radius-lg);
   padding: var(--space-xl);
-  backdrop-filter: blur(12px);
   transition: all var(--transition-base);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+}
 
-  &:hover {
-    transform: translateX(4px);
-    border-color: var(--color-border-hover);
-    box-shadow: var(--shadow-lg);
-  }
-
+// Header Section (Always Visible)
+.timeline-header-section {
   .timeline-header {
     display: flex;
     align-items: center;
@@ -153,11 +171,13 @@
     .timeline-duration {
       background: rgba(255, 255, 255, 0.05);
       color: var(--color-text-muted);
+      border: 1px solid rgba(148, 163, 184, 0.2);
     }
 
     .timeline-status {
-      background: var(--gradient-security);
+      background: rgba(16, 185, 129, 0.15);
       color: var(--color-security);
+      border: 1px solid rgba(16, 185, 129, 0.4);
       animation: pulse-glow 2s ease-in-out infinite;
     }
   }
@@ -180,7 +200,7 @@
   .timeline-gpa {
     font-size: 0.95rem;
     color: var(--color-text-secondary);
-    margin: 0 0 var(--space-lg) 0;
+    margin: 0 0 var(--space-md) 0;
 
     strong {
       color: var(--color-primary);
@@ -188,45 +208,78 @@
     }
   }
 
-  .timeline-details {
-    margin-top: var(--space-lg);
+  .expand-indicator {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
+    color: var(--color-text-muted);
+    font-size: 0.9rem;
+    font-weight: 600;
+    transition: color var(--transition-fast);
+    cursor: pointer;  // Pointer cursor only here
+    border-radius: var(--radius-sm);
+    user-select: none;  // Prevent text selection
 
-    p {
-      line-height: 1.7;
-      color: var(--color-text-secondary);
-      margin-bottom: var(--space-md);
-
-      &.project-desc {
-        font-size: 1rem;
-        margin-bottom: var(--space-lg);
-      }
-
-      strong {
-        color: var(--color-text-primary);
-        font-weight: 600;
-      }
+    mat-icon {
+      font-size: 20px;
+      width: 20px;
+      height: 20px;
     }
 
-    .coursework-list {
-      list-style: none;
-      padding: 0;
-      margin: var(--space-md) 0;
-      display: grid;
-      gap: var(--space-sm);
+    &:hover {
+      color: var(--color-primary);
+      background: rgba(59, 130, 246, 0.08);
+    }
 
-      li {
-        padding-left: var(--space-lg);
-        position: relative;
-        line-height: 1.6;
-        color: var(--color-text-secondary);
+    &:active {
+      transform: scale(0.98);
+    }
+  }
+}
 
-        &::before {
-          content: '▹';
-          position: absolute;
-          left: 0;
-          color: var(--color-primary);
-          font-size: 1.2rem;
-        }
+// Expandable Details Section
+.timeline-details {
+  overflow: hidden;
+
+  p {
+    line-height: 1.7;
+    color: var(--color-text-secondary);
+    margin-bottom: var(--space-md);
+
+    &.project-desc {
+      font-size: 1rem;
+      margin-bottom: var(--space-lg);
+    }
+
+    strong {
+      color: var(--color-text-primary);
+      font-weight: 600;
+    }
+  }
+
+  .coursework-list {
+    list-style: none;
+    padding: 0;
+    margin: var(--space-md) 0;
+    display: grid;
+    gap: var(--space-sm);
+
+    li {
+      padding-left: var(--space-lg);
+      position: relative;
+      line-height: 1.6;
+      color: var(--color-text-secondary);
+
+      &::before {
+        content: '▹';
+        position: absolute;
+        left: 0;
+        color: var(--color-primary);
+        font-size: 1.2rem;
       }
     }
   }
@@ -241,13 +294,13 @@
       display: flex;
       gap: var(--space-md);
       padding: var(--space-md);
-      background: rgba(0, 240, 255, 0.03);
+      background: rgba(59, 130, 246, 0.05);
       border-left: 3px solid var(--color-primary);
       border-radius: var(--radius-sm);
       transition: all var(--transition-fast);
 
       &:hover {
-        background: rgba(0, 240, 255, 0.05);
+        background: rgba(59, 130, 246, 0.08);
         transform: translateX(4px);
       }
 
@@ -293,7 +346,7 @@
           gap: var(--space-xs);
           margin-top: var(--space-sm);
           padding: var(--space-sm) var(--space-md);
-          background: rgba(0, 255, 136, 0.05);
+          background: rgba(16, 185, 129, 0.1);
           border-radius: var(--radius-sm);
           width: fit-content;
 
@@ -319,7 +372,7 @@
     gap: var(--space-xs);
     margin-top: var(--space-lg);
     padding-top: var(--space-lg);
-    border-top: 1px solid var(--color-border);
+    border-top: 1px solid rgba(148, 163, 184, 0.1);
 
     .tag {
       padding: var(--space-xs) var(--space-md);
@@ -340,26 +393,16 @@
       &.security {
         border-color: var(--color-security);
         color: var(--color-security);
-        background: rgba(0, 255, 136, 0.05);
+        background: rgba(16, 185, 129, 0.05);
 
         &:hover {
-          box-shadow: 0 0 12px rgba(0, 255, 136, 0.3);
+          box-shadow: 0 0 12px rgba(16, 185, 129, 0.3);
         }
       }
     }
   }
 
   @media (max-width: 768px) {
-    padding: var(--space-lg);
-
-    .timeline-title {
-      font-size: 1.25rem;
-    }
-
-    .timeline-org {
-      font-size: 1rem;
-    }
-
     .achievements .achievement-item {
       flex-direction: column;
       
@@ -380,5 +423,15 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+// Pulse animation for current status
+@keyframes pulse-glow {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(16, 185, 129, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 4px rgba(16, 185, 129, 0);
   }
 }

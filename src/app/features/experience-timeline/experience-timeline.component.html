@@ -1,20 +1,32 @@
 <div class="timeline-container">
   <div class="timeline">
     <!-- Timeline Item 1: Graduate Studies -->
-    <div class="timeline-item" data-aos="fade-up">
+    <div class="timeline-item" 
+         [class.expanded]="expandedItems.has(0)">
       <div class="timeline-marker education">
         <mat-icon>school</mat-icon>
       </div>
+      
       <div class="timeline-content">
-        <div class="timeline-header">
-          <div class="timeline-date">Sep 2025 - Present</div>
-          <div class="timeline-status current">Current</div>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Sep 2025 - Present</div>
+            <div class="timeline-status current">Current</div>
+          </div>
+          <h3 class="timeline-title">MS in Cybersecurity</h3>
+          <h4 class="timeline-org">Northeastern University, Boston, MA</h4>
+          <p class="timeline-gpa">CGPA: <strong>3.83</strong>/4.0</p>
+          
+          <!-- Expand/Collapse Indicator - Only this is clickable -->
+          <div class="expand-indicator" (click)="toggleExpand(0); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(0) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(0) ? 'Show Less' : 'Show More' }}</span>
+          </div>
         </div>
-        <h3 class="timeline-title">MS in Cybersecurity</h3>
-        <h4 class="timeline-org">Northeastern University, Boston, MA</h4>
-        <p class="timeline-gpa">CGPA: <strong>3.83</strong>/4.0</p>
-        
-        <div class="timeline-details">
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(0) ? 'expanded' : 'collapsed'">
           <p><strong>Key Coursework:</strong></p>
           <ul class="coursework-list">
             <li>Network Security (Firewalls, VPNs, Wireless Security, Threat Detection)</li>
@@ -22,31 +34,42 @@
             <li>Critical Infrastructure Protection (Risk Management, NIST CSF 2.0, DHS Frameworks)</li>
             <li>Cybersecurity Technologies (Linux Administration, Scripting, Cloud Security)</li>
           </ul>
-        </div>
 
-        <div class="timeline-tags">
-          <span class="tag">Network Security</span>
-          <span class="tag">Compliance</span>
-          <span class="tag">Infrastructure Protection</span>
-          <span class="tag">Cloud Security</span>
+          <div class="timeline-tags">
+            <span class="tag security">Network Security</span>
+            <span class="tag security">Compliance</span>
+            <span class="tag security">Infrastructure Protection</span>
+            <span class="tag security">Cloud Security</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Timeline Item 2: TCS Systems Engineer -->
-    <div class="timeline-item" data-aos="fade-up">
+    <div class="timeline-item"
+         [class.expanded]="expandedItems.has(1)">
       <div class="timeline-marker security">
         <mat-icon>security</mat-icon>
       </div>
+      
       <div class="timeline-content">
-        <div class="timeline-header">
-          <div class="timeline-date">Aug 2022 - Aug 2025</div>
-          <div class="timeline-duration">3 years</div>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Aug 2022 - Aug 2025</div>
+            <div class="timeline-duration">3 years</div>
+          </div>
+          <h3 class="timeline-title">Systems Engineer</h3>
+          <h4 class="timeline-org">Tata Consultancy Services, India</h4>
+          
+          <div class="expand-indicator" (click)="toggleExpand(1); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(1) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(1) ? 'Show Less' : 'Show More' }}</span>
+          </div>
         </div>
-        <h3 class="timeline-title">Systems Engineer</h3>
-        <h4 class="timeline-org">Tata Consultancy Services, India</h4>
-        
-        <div class="timeline-details">
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(1) ? 'expanded' : 'collapsed'">
           <p class="project-desc">
             Developed and secured Life & Health reinsurance application for a global leader, 
             ensuring compliance with financial services security standards.
@@ -90,33 +113,44 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="timeline-tags">
-          <span class="tag security">Angular</span>
-          <span class="tag security">Security</span>
-          <span class="tag">TypeScript</span>
-          <span class="tag security">OWASP</span>
-          <span class="tag">GraphQL</span>
-          <span class="tag security">DevSecOps</span>
+          <div class="timeline-tags">
+            <span class="tag security">Angular</span>
+            <span class="tag security">Security</span>
+            <span class="tag">TypeScript</span>
+            <span class="tag security">OWASP</span>
+            <span class="tag">GraphQL</span>
+            <span class="tag security">DevSecOps</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Timeline Item 3: TCS Python Developer Intern -->
-    <div class="timeline-item" data-aos="fade-up">
+    <div class="timeline-item"
+         [class.expanded]="expandedItems.has(2)">
       <div class="timeline-marker development">
         <mat-icon>code</mat-icon>
       </div>
+      
       <div class="timeline-content">
-        <div class="timeline-header">
-          <div class="timeline-date">Mar 2022 - Jun 2022</div>
-          <div class="timeline-duration">4 months</div>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Mar 2022 - Jun 2022</div>
+            <div class="timeline-duration">4 months</div>
+          </div>
+          <h3 class="timeline-title">Python Developer Intern</h3>
+          <h4 class="timeline-org">Tata Consultancy Services, Remote</h4>
+          
+          <div class="expand-indicator" (click)="toggleExpand(2); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(2) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(2) ? 'Show Less' : 'Show More' }}</span>
+          </div>
         </div>
-        <h3 class="timeline-title">Python Developer Intern</h3>
-        <h4 class="timeline-org">Tata Consultancy Services, Remote</h4>
-        
-        <div class="timeline-details">
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(2) ? 'expanded' : 'collapsed'">
           <div class="achievements">
             <div class="achievement-item">
               <div class="achievement-icon">
@@ -139,32 +173,43 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="timeline-tags">
-          <span class="tag">Python</span>
-          <span class="tag">Web Scraping</span>
-          <span class="tag security">Input Validation</span>
-          <span class="tag">Automation</span>
+          <div class="timeline-tags">
+            <span class="tag security">Python</span>
+            <span class="tag">Web Scraping</span>
+            <span class="tag security">Input Validation</span>
+            <span class="tag">Automation</span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- Timeline Item 4: Bachelor's Degree -->
-    <div class="timeline-item" data-aos="fade-up">
+    <div class="timeline-item"
+         [class.expanded]="expandedItems.has(3)">
       <div class="timeline-marker education">
         <mat-icon>school</mat-icon>
       </div>
+      
       <div class="timeline-content">
-        <div class="timeline-header">
-          <div class="timeline-date">Jun 2018 - Aug 2022</div>
-          <div class="timeline-duration">4 years</div>
+        <!-- Always Visible Header -->
+        <div class="timeline-header-section">
+          <div class="timeline-header">
+            <div class="timeline-date">Jun 2018 - Aug 2022</div>
+            <div class="timeline-duration">4 years</div>
+          </div>
+          <h3 class="timeline-title">Bachelor of Technology in Computer Science</h3>
+          <h4 class="timeline-org">Mar Athanasius College of Engineering, Kerala, India</h4>
+          <p class="timeline-gpa">CGPA: <strong>8.12</strong>/10.0</p>
+          
+          <div class="expand-indicator" (click)="toggleExpand(3); $event.stopPropagation()">
+            <mat-icon>{{ expandedItems.has(3) ? 'expand_less' : 'expand_more' }}</mat-icon>
+            <span>{{ expandedItems.has(3) ? 'Show Less' : 'Show More' }}</span>
+          </div>
         </div>
-        <h3 class="timeline-title">Bachelor of Technology in Computer Science</h3>
-        <h4 class="timeline-org">Mar Athanasius College of Engineering, Kerala, India</h4>
-        <p class="timeline-gpa">CGPA: <strong>8.12</strong>/10.0</p>
-        
-        <div class="timeline-details">
+
+        <!-- Expandable Details -->
+        <div class="timeline-details" [@expandCollapse]="expandedItems.has(3) ? 'expanded' : 'collapsed'">
           <div class="achievements">
             <div class="achievement-item">
               <div class="achievement-icon">
@@ -177,12 +222,12 @@
               </div>
             </div>
           </div>
-        </div>
 
-        <div class="timeline-tags">
-          <span class="tag">Computer Science</span>
-          <span class="tag">Machine Learning</span>
-          <span class="tag security">Network Security</span>
+          <div class="timeline-tags">
+            <span class="tag">Computer Science</span>
+            <span class="tag">Machine Learning</span>
+            <span class="tag security">Network Security</span>
+          </div>
         </div>
       </div>
     </div>

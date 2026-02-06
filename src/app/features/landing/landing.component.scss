@@ -1,8 +1,4 @@
-@import '../../../styles/design-system';
-
-// ========================================
-// BASE STYLES
-// ========================================
+@use'../../../styles/design-system';
 
 * {
   margin: 0;
@@ -21,10 +17,6 @@ section {
   position: relative;
   scroll-snap-align: start;
 }
-
-// ========================================
-// NAVIGATION - MOBILE RESPONSIVE
-// ========================================
 
 .modern-navbar {
   position: fixed;
@@ -236,7 +228,6 @@ section {
   }
 }
 
-// Mobile Menu Drawer (slides from right)
 .mobile-menu-drawer {
   position: fixed;
   top: 0;
@@ -376,10 +367,6 @@ section {
   cursor: pointer;
   animation: fadeIn 0.3s ease;
 }
-
-// ========================================
-// HERO SECTION - REFINED
-// ========================================
 
 .hero-section {
   min-height: 100vh;
@@ -819,20 +806,15 @@ section {
   }
 }
 
-// Continue with other sections using similar refined styling...
-// (Keep the rest of your sections but with updated color variables)
-
-// ========================================
-// ABOUT SECTION - REFINED
-// ========================================
-
 .about-section {
   background: var(--color-bg-secondary);
   position: relative;
   padding: var(--space-2xl) var(--space-md);
+  padding-top: 120px;  // Extra top padding for label visibility
 
   &.mobile-padding {
     padding: var(--space-xl) var(--space-md);
+    padding-top: 100px;
   }
 
   .section-container {
@@ -1177,6 +1159,7 @@ section {
 .skills-section-wrapper,
 .contact-section-wrapper {
   padding: var(--space-2xl) var(--space-md);
+  padding-top: 120px;  // Extra top padding so label is visible below navbar
   background: var(--color-bg-primary);
 
   &:nth-child(even) {
@@ -1190,12 +1173,9 @@ section {
 
   @media (max-width: 768px) {
     padding: var(--space-xl) var(--space-md);
+    padding-top: 100px;  // Slightly less on mobile
   }
 }
-
-// ========================================
-// SECTION HEADERS (Shared) - REFINED
-// ========================================
 
 .section-header {
   text-align: center;
@@ -1223,10 +1203,6 @@ section {
     color: var(--color-text-primary);
   }
 }
-
-// ========================================
-// GLOBAL UTILITIES
-// ========================================
 
 html {
   scroll-behavior: smooth;

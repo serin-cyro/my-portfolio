@@ -1,6 +1,3 @@
-<!-- ========================================
-     NAVIGATION - MOBILE RESPONSIVE
-     ======================================== -->
 <nav class="modern-navbar" [class.mobile]="isMobile">
   <div class="navbar-content">
     <!-- Logo - Desktop only -->
@@ -52,7 +49,6 @@
   </div>
 </nav>
 
-<!-- Mobile Menu Drawer - Redesigned -->
 <div class="mobile-menu-drawer" *ngIf="isMobile && mobileMenuOpen" [@slideIn]>
   <div class="drawer-content">
     <!-- Navigation Links with Icons -->
@@ -125,9 +121,6 @@
 <!-- Backdrop (click to close) -->
 <div class="menu-backdrop" *ngIf="isMobile && mobileMenuOpen" (click)="toggleMobileMenu()"></div>
 
-<!-- ========================================
-     HERO SECTION - BETTER MOBILE LAYOUT
-     ======================================== -->
 <section id="landing" class="hero-section">
   <div class="hero-background">
     <div class="grid-overlay"></div>
@@ -224,13 +217,10 @@
   </div>
 </section>
 
-<!-- ========================================
-     OTHER SECTIONS (Keep existing structure)
-     ======================================== -->
 <section id="about" class="about-section" [ngClass]="{'mobile-padding' : isMobile}">
   <div class="section-container">
     <div class="section-header">
-      <span class="section-label">Who I Am</span>
+      <!-- <span class="section-label">Who I Am</span> -->
       <h2 class="section-title">
         Software Engineer <span class="gradient-text">×</span> Security Researcher
       </h2>
@@ -360,7 +350,7 @@
 <section id="timeline" class="timeline-section">
   <div class="section-container">
     <div class="section-header">
-      <span class="section-label">Journey</span>
+      <!-- <span class="section-label">Journey</span> -->
       <h2 class="section-title">Experience Timeline</h2>
     </div>
     <app-experience-timeline></app-experience-timeline>
@@ -370,7 +360,7 @@
 <section id="projects" class="projects-section">
   <div class="section-container">
     <div class="section-header">
-      <span class="section-label">Portfolio</span>
+      <!-- <span class="section-label">Portfolio</span> -->
       <h2 class="section-title">Featured Projects</h2>
     </div>
     <app-projects></app-projects>
@@ -380,7 +370,7 @@
 <section id="skills" class="skills-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <span class="section-label">Expertise</span>
+      <!-- <span class="section-label">Expertise</span> -->
       <h2 class="section-title">Technical Arsenal</h2>
     </div>
     <app-skills></app-skills>
@@ -390,7 +380,7 @@
 <section id="contact" class="contact-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <span class="section-label">Get In Touch</span>
+      <!-- <span class="section-label">Get In Touch</span> -->
       <h2 class="section-title">Let's Build Something Secure</h2>
     </div>
     <app-contact></app-contact>

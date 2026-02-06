@@ -1,3 +1,5 @@
+@use 'styles/design-system';
+
 @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@600&display=swap');
 * {
   margin: 0;
@@ -22,4 +24,3 @@ html, body {
   padding: 6px 10px;
   box-shadow: 0 4px 12px rgba(0, 255, 255, 0.3);
 }
-@import 'styles/design-system';

@@ -7,7 +7,7 @@
 
     <div class="carousel-track">
       <div class="carousel-slides" [style.transform]="getTransform()">
-        
+
         <div class="carousel-slide">
           <div class="project-card featured">
             <div class="project-header">
@@ -18,7 +18,7 @@
                 </span>
                 <span class="badge featured-badge">Featured</span>
               </div>
-              
+
               <div class="project-image-placeholder security-bg">
                 <mat-icon class="project-icon">security</mat-icon>
                 <div class="project-overlay-text">Network Analysis</div>
@@ -28,7 +28,7 @@
             <div class="project-content">
               <h3 class="project-title">WMATA Metro Critical Infrastructure Analysis</h3>
               <p class="project-description">
-                Cyber-physical network vulnerability assessment of Washington Metro transit system. 
+                Cyber-physical network vulnerability assessment of Washington Metro transit system.
                 Identified high-risk chokepoints using graph theory and applied NIST CSF 2.0 & DHS frameworks.
               </p>
 
@@ -73,7 +73,7 @@
                   Machine Learning
                 </span>
               </div>
-              
+
               <div class="project-image-placeholder ml-bg">
                 <mat-icon class="project-icon">psychology</mat-icon>
                 <div class="project-overlay-text">Deep Learning IDS</div>
@@ -83,7 +83,7 @@
             <div class="project-content">
               <h3 class="project-title">Hybrid Deep Learning IDS</h3>
               <p class="project-description">
-                Designed intrusion detection system using hybrid deep learning to identify DDoS attacks, 
+                Designed intrusion detection system using hybrid deep learning to identify DDoS attacks,
                 port scanning, and botnet activity. Mapped detection logic to MITRE ATT&CK framework.
               </p>
 
@@ -129,7 +129,7 @@
                   Enterprise
                 </span>
               </div>
-              
+
               <div class="project-image-placeholder enterprise-bg">
                 <mat-icon class="project-icon">corporate_fare</mat-icon>
                 <div class="project-overlay-text">Enterprise Platform</div>
@@ -139,7 +139,7 @@
             <div class="project-content">
               <h3 class="project-title">Secure Reinsurance Platform Migration</h3>
               <p class="project-description">
-                Led frontend migration from legacy GWT to modern Angular architecture for global 
+                Led frontend migration from legacy GWT to modern Angular architecture for global
                 reinsurance platform. Implemented secure authentication and mitigated UI vulnerabilities.
               </p>
 
@@ -181,7 +181,7 @@
                   Web Development
                 </span>
               </div>
-              
+
               <div class="project-image-placeholder portfolio-bg">
                 <mat-icon class="project-icon">palette</mat-icon>
                 <div class="project-overlay-text">Modern Portfolio</div>
@@ -191,7 +191,7 @@
             <div class="project-content">
               <h3 class="project-title">Modern Portfolio Website</h3>
               <p class="project-description">
-                Designed and developed responsive portfolio website with modern animations, 
+                Designed and developed responsive portfolio website with modern animations,
                 glassmorphism effects, and optimal performance. Built with Angular.
               </p>
 
@@ -225,10 +225,7 @@
   </div>
 
   <div class="carousel-indicators">
-    <button 
-      *ngFor="let page of [0, 1, 2]; let i = index"
-      class="indicator"
-      [class.active]="i === currentIndex"
+    <button *ngFor="let page of [0, 1, 2]; let i = index" class="indicator" [class.active]="i === currentIndex"
       (click)="goToProject(i)">
     </button>
   </div>

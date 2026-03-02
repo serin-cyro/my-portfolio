@@ -141,10 +141,10 @@ export class ProjectsComponent implements OnInit, OnDestroy {
   }
 
   getTransform(): string {
-    // Each slide is (100 / slidesPerView)% wide, shift by currentIndex steps
-    const percentShift = this.currentIndex * (100 / this.slidesPerView);
-    const gapShift = this.isMobile ? 0 : this.currentIndex * 1.5;
-    return `translateX(calc(-${percentShift}% - ${gapShift}rem))`;
+    if (this.isMobile) {
+      return `translateX(calc(-${this.currentIndex * 100}%))`;
+    }
+    return `translateX(calc(${this.currentIndex} * (-50% - 0.25rem)))`;
   }
   openLink(url: string): void {
     window.open(url, '_blank');

@@ -9,12 +9,8 @@
 
     <!-- Desktop Navigation -->
     <div class="nav-links" *ngIf="!isMobile">
-      <button 
-        *ngFor="let section of sections"
-        class="nav-link"
-        [class.active]="currentSection === section.id"
-        (click)="scrollTo(section.id)"
-        type="button">
+      <button *ngFor="let section of sections" class="nav-link" [class.active]="currentSection === section.id"
+        (click)="scrollTo(section.id)" type="button">
         <span class="link-text">{{ section.label }}</span>
         <span class="link-indicator"></span>
       </button>
@@ -27,7 +23,7 @@
         <span class="logo-text gradient-text">ST</span>
         <span class="logo-bracket">&gt;</span>
       </div>
-      
+
       <button class="menu-toggle" (click)="toggleMobileMenu()">
         <mat-icon>{{ mobileMenuOpen ? 'close' : 'menu' }}</mat-icon>
       </button>
@@ -35,14 +31,10 @@
 
     <!-- Desktop Actions -->
     <div class="nav-actions" *ngIf="!isMobile">
-      <a href="assets/resume.pdf" target="_blank" 
-         class="action-btn" 
-         data-tooltip="View Resume">
+      <a href="assets/resume.pdf" target="_blank" class="action-btn" data-tooltip="View Resume">
         <mat-icon>visibility</mat-icon>
       </a>
-      <a href="assets/resume.pdf" download 
-         class="action-btn primary" 
-         data-tooltip="Download Resume">
+      <a href="assets/resume.pdf" download class="action-btn primary" data-tooltip="Download Resume">
         <mat-icon>download</mat-icon>
       </a>
     </div>
@@ -53,55 +45,36 @@
   <div class="drawer-content">
     <!-- Navigation Links with Icons -->
     <div class="drawer-menu">
-      <button 
-        class="drawer-link"
-        [class.active]="currentSection === 'landing'"
-        (click)="scrollTo('landing')"
+      <button class="drawer-link" [class.active]="currentSection === 'landing'" (click)="scrollTo('landing')"
         type="button">
         <mat-icon>home</mat-icon>
         <span>Home</span>
       </button>
 
-      <button 
-        class="drawer-link"
-        [class.active]="currentSection === 'about'"
-        (click)="scrollTo('about')"
-        type="button">
+      <button class="drawer-link" [class.active]="currentSection === 'about'" (click)="scrollTo('about')" type="button">
         <mat-icon>person</mat-icon>
         <span>About</span>
       </button>
 
-      <button 
-        class="drawer-link"
-        [class.active]="currentSection === 'timeline'"
-        (click)="scrollTo('timeline')"
+      <button class="drawer-link" [class.active]="currentSection === 'timeline'" (click)="scrollTo('timeline')"
         type="button">
         <mat-icon>work_history</mat-icon>
         <span>Experience</span>
       </button>
 
-      <button 
-        class="drawer-link"
-        [class.active]="currentSection === 'projects'"
-        (click)="scrollTo('projects')"
+      <button class="drawer-link" [class.active]="currentSection === 'projects'" (click)="scrollTo('projects')"
         type="button">
         <mat-icon>code</mat-icon>
         <span>Projects</span>
       </button>
 
-      <button 
-        class="drawer-link"
-        [class.active]="currentSection === 'skills'"
-        (click)="scrollTo('skills')"
+      <button class="drawer-link" [class.active]="currentSection === 'skills'" (click)="scrollTo('skills')"
         type="button">
         <mat-icon>psychology</mat-icon>
         <span>Skills</span>
       </button>
 
-      <button 
-        class="drawer-link"
-        [class.active]="currentSection === 'contact'"
-        (click)="scrollTo('contact')"
+      <button class="drawer-link" [class.active]="currentSection === 'contact'" (click)="scrollTo('contact')"
         type="button">
         <mat-icon>email</mat-icon>
         <span>Contact</span>
@@ -139,14 +112,8 @@
     </h1>
 
     <div class="hero-subtitle animate-fade-in-up delay-2">
-      <typewriter
-        [texts]="roles"
-        [typeSpeed]="100"
-        [deleteSpeed]="50"
-        [pause]="1500"
-        [loop]="true"
-        [cursor]="true"
-      ></typewriter>
+      <typewriter [texts]="roles" [typeSpeed]="100" [deleteSpeed]="50" [pause]="1500" [loop]="true" [cursor]="true">
+      </typewriter>
     </div>
 
     <p class="hero-tagline animate-fade-in-up delay-3">
@@ -160,7 +127,7 @@
       </div>
       <div class="stat-divider"></div>
       <div class="stat-item">
-        <div class="stat-value">Top 8%</div>
+        <div class="stat-value">Top 5%</div>
         <div class="stat-label">TryHackMe</div>
       </div>
       <div class="stat-divider"></div>
@@ -181,31 +148,19 @@
     </div>
 
     <div class="social-links animate-fade-in-up delay-6">
-      <a href="https://github.com/serin-cyro" 
-         target="_blank" 
-         class="social-link"
-         data-tooltip="GitHub">
+      <a href="https://github.com/serin-cyro" target="_blank" class="social-link" data-tooltip="GitHub">
         <mat-icon>code</mat-icon>
       </a>
-      
-      <a href="https://www.linkedin.com/in/serin-tony/" 
-         target="_blank" 
-         class="social-link"
-         data-tooltip="LinkedIn">
+
+      <a href="https://www.linkedin.com/in/serin-tony/" target="_blank" class="social-link" data-tooltip="LinkedIn">
         <mat-icon>person</mat-icon>
       </a>
-      
-      <a href="mailto:tony.s@northeastern.edu" 
-         target="_blank" 
-         class="social-link"
-         data-tooltip="Email">
+
+      <a href="mailto:tony.s@northeastern.edu" target="_blank" class="social-link" data-tooltip="Email">
         <mat-icon>email</mat-icon>
       </a>
-      
-      <a href="https://tryhackme.com/p/serintony" 
-         target="_blank" 
-         class="social-link"
-         data-tooltip="TryHackMe">
+
+      <a href="https://tryhackme.com/p/serintony" target="_blank" class="social-link" data-tooltip="TryHackMe">
         <mat-icon>verified_user</mat-icon>
       </a>
     </div>
@@ -220,7 +175,6 @@
 <section id="about" class="about-section" [ngClass]="{'mobile-padding' : isMobile}">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Who I Am</span> -->
       <h2 class="section-title">
         Software Engineer <span class="gradient-text">×</span> Security Researcher
       </h2>
@@ -237,7 +191,7 @@
             <strong>MS Cybersecurity &#64; Northeastern University (3.83 GPA)</strong>
           </p>
           <p>
-            3+ years building secure, high-performance web applications at <strong>Tata Consultancy Services</strong>. 
+            3+ years building secure, high-performance web applications at <strong>Tata Consultancy Services</strong>.
             Specialized in <strong>Application Security, Cloud Security & Threat Detection</strong>.
           </p>
         </div>
@@ -252,9 +206,9 @@
         </div>
 
         <div class="impact-card">
-          <div class="impact-number gradient-text">Top 8%</div>
+          <div class="impact-number gradient-text">Top 5%</div>
           <div class="impact-label">TryHackMe Ranking</div>
-          <div class="impact-detail">Active cybersecurity practitioner</div>
+          <div class="impact-detail">Ranked in global cybersecurity community</div>
         </div>
 
         <div class="impact-card">
@@ -297,7 +251,23 @@
               <mat-icon>bug_report</mat-icon>
             </div>
             <h4>Threat Detection</h4>
-            <p>Network analysis, incident response, SIEM tools, intrusion detection</p>
+            <p>Splunk, Snort, Elastic Stack, incident triage, IOC analysis, alert correlation, MITRE ATT&CK</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon threat">
+              <mat-icon>travel_explore</mat-icon>
+            </div>
+            <h4>OSINT & Threat Intelligence</h4>
+            <p>Passive reconnaissance, CVE research, Shodan, SpiderFoot, theHarvester, CTI analysis</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon security">
+              <mat-icon>policy</mat-icon>
+            </div>
+            <h4>Compliance & Risk</h4>
+            <p>NIST CSF 2.0, NIST SP 800-53, ISO 27001, PCI-DSS, SOC 2, HIPAA, risk assessment</p>
           </div>
         </div>
       </div>
@@ -323,6 +293,10 @@
             <mat-icon>search</mat-icon>
             Threat Hunting
           </span>
+          <span class="pill security">
+            <mat-icon>travel_explore</mat-icon>
+            OSINT
+          </span>
           <span class="pill">REST & GraphQL</span>
           <span class="pill">Linux</span>
           <span class="pill security">DevSecOps</span>
@@ -337,7 +311,7 @@
         </div>
         <div class="cta-content">
           <h4>Open to Opportunities</h4>
-          <p>Security Engineering • Application Security • Cloud Security • SecOps</p>
+          <p>Security Engineering • AppSec • Threat Intelligence • Cloud Security • SecOps</p>
         </div>
         <button mat-raised-button class="btn-primary" (click)="scrollTo('contact')">
           Let's Connect
@@ -350,7 +324,6 @@
 <section id="timeline" class="timeline-section">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Journey</span> -->
       <h2 class="section-title">Experience Timeline</h2>
     </div>
     <app-experience-timeline></app-experience-timeline>
@@ -360,7 +333,6 @@
 <section id="projects" class="projects-section">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Portfolio</span> -->
       <h2 class="section-title">Featured Projects</h2>
     </div>
     <app-projects></app-projects>
@@ -370,7 +342,6 @@
 <section id="skills" class="skills-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Expertise</span> -->
       <h2 class="section-title">Technical Arsenal</h2>
     </div>
     <app-skills></app-skills>
@@ -380,7 +351,6 @@
 <section id="contact" class="contact-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Get In Touch</span> -->
       <h2 class="section-title">Let's Build Something Secure</h2>
     </div>
     <app-contact></app-contact>

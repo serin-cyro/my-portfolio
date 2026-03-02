@@ -1,4 +1,3 @@
-// ==== skills.component.ts ====
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
@@ -7,73 +6,153 @@ import { MatIconModule } from '@angular/material/icon';
 @Component({
   selector: 'app-skills',
   standalone: true,
-  imports: [CommonModule, MatTabsModule, MatIconModule,],
+  imports: [CommonModule, MatTabsModule, MatIconModule],
   templateUrl: './skills.component.html',
   styleUrls: ['./skills.component.scss']
 })
 export class SkillsComponent {
-selectedSkillIndex: number | null = null;
 
-  skillCategories = [
+  // ── Security & Defense (progress bar section) ──────────────────────────────
+  securitySkills = [
     {
-      category: 'Languages',
-      skills: [
-        { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg', link: 'https://developer.mozilla.org/en-US/docs/Web/JavaScript' },
-        { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg', link: 'https://www.typescriptlang.org/' },
-        { name: 'Python', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg', link: 'https://www.python.org/' },
-        { name: 'C', icon: 'assets/c.png', link: 'https://dart.dev/' },
-        { name: 'C++', icon: 'assets/cpp.png', link: 'https://dart.dev/' },
-        { name: 'Dart', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/dart/dart-original.svg', link: 'https://dart.dev/' }
-      ]
+      name: 'Application Security',
+      level: 'Expert',
+      width: '90%',
+      tags: ['OWASP Top 10', 'Secure Code Review', 'XSS/CSRF/IDOR']
     },
     {
-      category: 'Frameworks & Libraries',
-      skills: [
-        { name: 'Angular', icon: 'favicon.ico', link: 'https://angular.io/' },
-        { name: 'Flutter', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg', link: 'https://flutter.dev/' },
-        { name: 'Tailwind CSS', icon: 'assets/tailwind.png', link: 'https://tailwindcss.com/' }
-      ]
+      name: 'Vulnerability Management',
+      level: 'Advanced',
+      width: '85%',
+      tags: ['Nessus', 'CVSS Scoring', 'Vulnerability Lifecycle', 'CI/CD Security']
     },
     {
-      category: 'DevOps & Cloud',
-      skills: [
-        { name: 'GitHub Actions', icon: 'https://github.com/fluidicon.png', link: 'https://github.com/features/actions' },
-        { name: 'Firebase', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg', link: 'https://firebase.google.com/' },
-        { name: 'Azure', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/azure/azure-original.svg', link: 'https://azure.microsoft.com/' },
-        { name:'Google Cloud', icon :'assets/gcp.png', link:'https://cloud.google.com' }
-      ]
+      name: 'Threat Detection & Response',
+      level: 'Advanced',
+      width: '85%',
+      tags: ['SIEM', 'Incident Triage', 'IOC Analysis', 'Alert Correlation', 'MITRE ATT&CK']
     },
     {
-      category: 'Databases',
-      skills: [
-        { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg', link: 'https://www.mysql.com/' },
-        { name: 'Firestore', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/firebase/firebase-plain.svg', link: 'https://firebase.google.com/products/firestore' },
-        { name: 'Oracle', icon: 'assets/oracle.png', link: 'https://www.oracle.com/in/' },
-      ]
+      name: 'OSINT & Threat Intelligence',
+      level: 'Advanced',
+      width: '82%',
+      tags: ['Shodan', 'theHarvester', 'SpiderFoot', 'CVE Research', 'CTI Analysis']
     },
     {
-      category: 'Security & Tools',
-      skills: [
-        { name: 'OWASP ZAP', icon: 'assets/zap.png', link: 'https://www.zaproxy.org/' },
-        { name: 'Burp Suite', icon: 'assets/burpsuite.png', link: 'https://portswigger.net/burp' },
-        { name: 'Postman', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postman/postman-original.svg', link: 'https://www.postman.com/' }
-      ]
+      name: 'Network Security',
+      level: 'Proficient',
+      width: '78%',
+      tags: ['TCP/IP', 'Firewall Rules', 'VPNs', 'Wireless Security', 'Traffic Analysis']
     },
-     {
-      category: 'Games',
-      skills: [
-        { name: 'Valorant', icon: 'https://cmsassets.rgpub.io/sanity/images/dsfx7636/news/cbf4460132cdfeb2a97fad5f9dd25ba0bc058f76-128x128.png', link: 'https://playvalorant.com/' },
-        { name: 'Marvel Rivals', icon: 'https://marvelrivals.com/favicon.ico', link: 'https://www.marvelrivals.com/' }
-      ]
+    {
+      name: 'Cloud Security',
+      level: 'Proficient',
+      width: '75%',
+      tags: ['AWS IAM', 'S3 Security', 'CloudTrail', 'CIS Benchmarks', 'GCP']
     }
   ];
-  
-onSkillClick(index: number) {
-  this.selectedSkillIndex = this.selectedSkillIndex === index ? null : index;
-}
 
-onTabChange() {
-  this.selectedSkillIndex = null; 
-}
+  // ── Security Tools (icon grid section) ─────────────────────────────────────
+  securityTools = [
+    { icon: 'network_check', name: 'Nmap' },
+    { icon: 'router', name: 'Wireshark' },
+    { icon: 'bug_report', name: 'Burp Suite' },
+    { icon: 'security', name: 'OWASP ZAP' },
+    { icon: 'terminal', name: 'Kali Linux' },
+    { icon: 'analytics', name: 'Splunk' },
+    { icon: 'policy', name: 'Snort' },
+    { icon: 'vpn_key', name: 'OpenSSL' },
+    { icon: 'storage', name: 'Metasploit' },
+    { icon: 'search', name: 'Elastic Stack' },
+    { icon: 'manage_search', name: 'Shodan' },
+    { icon: 'travel_explore', name: 'SpiderFoot' },
+    { icon: 'find_in_page', name: 'theHarvester' },
+    { icon: 'shield', name: 'Nessus' },
+    { icon: 'supervised_user_circle', name: 'Entra ID' },
+    { icon: 'lock', name: 'MFA Admin' },
+  ];
 
+  // ── Cloud & DevSecOps (logo grid section) ──────────────────────────────────
+  cloudTools = [
+    { src: 'https://cdn.simpleicons.org/amazonaws/FF9900', alt: 'AWS', name: 'AWS' },
+    { src: 'https://cdn.simpleicons.org/googlecloud/4285F4', alt: 'GCP', name: 'GCP' },
+    { src: 'https://cdn.simpleicons.org/docker/2496ED', alt: 'Docker', name: 'Docker' },
+    { src: 'https://cdn.simpleicons.org/kubernetes/326CE5', alt: 'Kubernetes', name: 'Kubernetes' },
+    { src: 'https://cdn.simpleicons.org/git/F05032', alt: 'Git', name: 'Git' },
+    { src: 'https://cdn.simpleicons.org/github/FFFFFF', alt: 'GitHub', name: 'GitHub' },
+    { src: 'https://cdn.simpleicons.org/linux/FCC624', alt: 'Linux', name: 'Linux' },
+    { src: 'https://cdn.simpleicons.org/gnubash/4EAA25', alt: 'Bash', name: 'Bash' },
+    { src: 'https://cdn.simpleicons.org/powershell/5391FE', alt: 'PowerShell', name: 'PowerShell' },
+    { src: 'https://cdn.simpleicons.org/jira/0052CC', alt: 'Jira', name: 'Jira' },
+    { src: 'https://cdn.simpleicons.org/servicenow/00BCF2', alt: 'ServiceNow', name: 'ServiceNow' },
+    { src: 'https://cdn.simpleicons.org/confluence/172B4D', alt: 'Confluence', name: 'Confluence' },
+  ];
+
+  // ── Full-Stack Development (logo grid section) ─────────────────────────────
+  devTools = [
+    { src: 'https://cdn.simpleicons.org/angular/DD0031', alt: 'Angular', name: 'Angular' },
+    { src: 'https://cdn.simpleicons.org/typescript/3178C6', alt: 'TypeScript', name: 'TypeScript' },
+    { src: 'https://cdn.simpleicons.org/python/3776AB', alt: 'Python', name: 'Python' },
+    { src: 'https://cdn.simpleicons.org/javascript/F7DF1E', alt: 'JavaScript', name: 'JavaScript' },
+    { src: 'https://cdn.simpleicons.org/openjdk/FFFFFF', alt: 'Java', name: 'Java' },
+    { src: 'https://cdn.simpleicons.org/cplusplus/00599C', alt: 'C++', name: 'C++' },
+    { src: 'https://cdn.simpleicons.org/html5/E34F26', alt: 'HTML5', name: 'HTML5' },
+    { src: 'https://cdn.simpleicons.org/css3/06B6D4', alt: 'CSS3', name: 'CSS3' },
+  ];
+
+  // ── Certifications ─────────────────────────────────────────────────────────
+  certifications = [
+    {
+      icon: 'verified',
+      title: 'Google Associate Cloud Engineer',
+      subtitle: 'Google Cloud Platform',
+      highlight: false
+    },
+    {
+      icon: 'school',
+      title: 'IBM IT Fundamentals for Cybersecurity',
+      subtitle: 'Specialization',
+      highlight: false
+    },
+    {
+      icon: 'code',
+      title: 'Microsoft GitHub Copilot',
+      subtitle: 'AI-Powered Development',
+      highlight: false
+    },
+    {
+      icon: 'emoji_events',
+      title: 'Top 5% on TryHackMe',
+      subtitle: 'Active Cybersecurity Practitioner',
+      highlight: true
+    },
+    {
+      icon: 'military_tech',
+      title: 'Security+ (In Progress)',
+      subtitle: 'CompTIA — June 2025',
+      highlight: false
+    },
+    {
+      icon: 'workspace_premium',
+      title: 'ISC2 CC (In Progress)',
+      subtitle: 'Certified in Cybersecurity — April 2025',
+      highlight: false
+    }
+  ];
+
+  // ── Frameworks & Standards (pills section) ─────────────────────────────────
+  frameworks = [
+    'NIST CSF 2.0',
+    'NIST SP 800-53',
+    'MITRE ATT&CK',
+    'OWASP Top 10',
+    'ISO 27001',
+    'PCI-DSS',
+    'SOC 2',
+    'HIPAA',
+    'GDPR',
+    'DHS/CISA Critical Infrastructure',
+    'CIS Controls',
+    'STRIDE Threat Modeling',
+  ];
 }

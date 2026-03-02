@@ -5,11 +5,12 @@
       <mat-icon>chevron_left</mat-icon>
     </button>
 
-    <div class="carousel-track" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
+    <div class="carousel-track" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)"
+      (scroll)="onCarouselScroll($event)">
       <div class="carousel-slides" [style.transform]="getTransform()">
 
         <div class="carousel-slide">
-          <div class="project-card featured">
+          <div class="project-card featured" [class.expanded]="expandedIndex === 0" (click)="toggleExpand(0)">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
@@ -21,6 +22,13 @@
               <div class="project-image-placeholder osint-bg">
                 <mat-icon class="project-icon">manage_search</mat-icon>
                 <div class="project-overlay-text">Threat Intelligence</div>
+                <div class="mobile-card-overlay">
+                  <h3 class="mobile-card-title">Cyber Threat Intelligence & OSINT | Rivian</h3>
+                  <span class="mobile-tap-hint">
+                    <mat-icon>{{ expandedIndex === 0 ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    {{ expandedIndex === 0 ? 'Tap to collapse' : 'Tap for details' }}
+                  </span>
+                </div>
               </div>
             </div>
             <div class="project-content">
@@ -60,7 +68,7 @@
         </div>
 
         <div class="carousel-slide">
-          <div class="project-card featured">
+          <div class="project-card featured" [class.expanded]="expandedIndex === 1" (click)="toggleExpand(1)">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
@@ -72,6 +80,13 @@
               <div class="project-image-placeholder security-bg">
                 <mat-icon class="project-icon">security</mat-icon>
                 <div class="project-overlay-text">Network Analysis</div>
+                <div class="mobile-card-overlay">
+                  <h3 class="mobile-card-title">WMATA Metro Critical Infrastructure</h3>
+                  <span class="mobile-tap-hint">
+                    <mat-icon>{{ expandedIndex === 1 ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    {{ expandedIndex === 1 ? 'Tap to collapse' : 'Tap for details' }}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -122,7 +137,7 @@
         </div>
 
         <div class="carousel-slide">
-          <div class="project-card featured">
+          <div class="project-card featured" [class.expanded]="expandedIndex === 2" (click)="toggleExpand(2)">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
@@ -134,6 +149,13 @@
               <div class="project-image-placeholder ml-bg">
                 <mat-icon class="project-icon">psychology</mat-icon>
                 <div class="project-overlay-text">Deep Learning IDS</div>
+                <div class="mobile-card-overlay">
+                  <h3 class="mobile-card-title">Hybrid Deep Learning IDS</h3>
+                  <span class="mobile-tap-hint">
+                    <mat-icon>{{ expandedIndex === 2 ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    {{ expandedIndex === 2 ? 'Tap to collapse' : 'Tap for details' }}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -182,7 +204,7 @@
 
 
         <div class="carousel-slide">
-          <div class="project-card">
+          <div class="project-card" [class.expanded]="expandedIndex === 3" (click)="toggleExpand(3)">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge development">
@@ -194,6 +216,13 @@
               <div class="project-image-placeholder enterprise-bg">
                 <mat-icon class="project-icon">corporate_fare</mat-icon>
                 <div class="project-overlay-text">Enterprise Platform</div>
+                <div class="mobile-card-overlay">
+                  <h3 class="mobile-card-title">Secure Reinsurance Platform Migration</h3>
+                  <span class="mobile-tap-hint">
+                    <mat-icon>{{ expandedIndex === 3 ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    {{ expandedIndex === 3 ? 'Tap to collapse' : 'Tap for details' }}
+                  </span>
+                </div>
               </div>
             </div>
 
@@ -234,7 +263,7 @@
 
 
         <div class="carousel-slide">
-          <div class="project-card">
+          <div class="project-card" [class.expanded]="expandedIndex === 4" (click)="toggleExpand(4)">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge development">
@@ -246,6 +275,13 @@
               <div class="project-image-placeholder portfolio-bg">
                 <mat-icon class="project-icon">palette</mat-icon>
                 <div class="project-overlay-text">Modern Portfolio</div>
+                <div class="mobile-card-overlay">
+                  <h3 class="mobile-card-title">Modern Portfolio Website</h3>
+                  <span class="mobile-tap-hint">
+                    <mat-icon>{{ expandedIndex === 4 ? 'expand_less' : 'expand_more' }}</mat-icon>
+                    {{ expandedIndex === 4 ? 'Tap to collapse' : 'Tap for details' }}
+                  </span>
+                </div>
               </div>
             </div>
 

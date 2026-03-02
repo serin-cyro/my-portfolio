@@ -12,6 +12,7 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ProjectsComponent implements OnInit, OnDestroy {
   currentIndex: number = 0;
+  expandedIndex: number | null = null; // tracks which card is expanded on mobile
 
   projects = [
     { id: 1, title: 'Rivian OSINT & Threat Intelligence' },
@@ -60,6 +61,34 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   ngOnDestroy(): void {
     this.stopAutoPlay();
+  }
+
+  toggleExpand(index: number): void {
+    if (!this.isMobile) return; // only works on mobile
+    this.expandedIndex = this.expandedIndex === index ? null : index;
+  }
+
+  onCarouselScroll(event: Event): void {
+    if (!this.isMobile) return;
+    const track = event.target as HTMLElement;
+    const scrollLeft = track.scrollLeft;
+
+    const firstSlide = track.querySelector('.carousel-slide') as HTMLElement;
+    const cardWidth = firstSlide ? firstSlide.offsetWidth + 16 : track.clientWidth * 0.85 + 16;
+
+    this.currentIndex = Math.min(
+      Math.round(scrollLeft / cardWidth),
+      this.totalProjects - 1
+    );
+    this.expandedIndex = null;
+
+    const maxScroll = track.scrollWidth - track.clientWidth;
+    if (scrollLeft >= maxScroll - 5 && this.currentIndex === this.totalProjects - 1) {
+      setTimeout(() => {
+        track.scrollTo({ left: 0, behavior: 'smooth' });
+        this.currentIndex = 0;
+      }, 400);
+    }
   }
 
   @HostListener('window:resize')
@@ -142,7 +171,7 @@ export class ProjectsComponent implements OnInit, OnDestroy {
 
   getTransform(): string {
     if (this.isMobile) {
-      return `translateX(calc(-${this.currentIndex * 100}%))`;
+      return 'none'; // CSS scroll snap handles it on mobile
     }
     return `translateX(calc(${this.currentIndex} * (-50% - 0.25rem)))`;
   }

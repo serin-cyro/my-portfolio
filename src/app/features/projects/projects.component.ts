@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, HostListener } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
@@ -10,11 +10,9 @@ import { MatIconModule } from '@angular/material/icon';
   templateUrl: './projects.component.html',
   styleUrls: ['./projects.component.scss']
 })
-export class ProjectsComponent implements OnInit {
+export class ProjectsComponent implements OnInit, OnDestroy {
   currentIndex: number = 0;
-  totalProjects: number = 5;
 
-  // Project data for indicators (can be expanded with more details)
   projects = [
     { id: 1, title: 'Rivian OSINT & Threat Intelligence' },
     { id: 2, title: 'WMATA Metro Analysis' },
@@ -23,12 +21,38 @@ export class ProjectsComponent implements OnInit {
     { id: 5, title: 'Modern Portfolio Website' }
   ];
 
-  // Auto-play settings (optional)
+  // ── Derived automatically from the projects array ──────────────────────────
+  get totalProjects(): number {
+    return this.projects.length;
+  }
+
+  // 1 card on mobile (≤1024px), 2 on desktop
+  isMobile: boolean = false;
+
+  get slidesPerView(): number {
+    return this.isMobile ? 1 : 2;
+  }
+
+  // Max index we can scroll to
+  get maxIndex(): number {
+    return this.totalProjects - this.slidesPerView;
+  }
+
+  // Dot indicators — one per possible position
+  get indicatorRange(): number[] {
+    return Array.from({ length: this.maxIndex + 1 }, (_, i) => i);
+  }
+
   autoPlayInterval: any;
   autoPlayEnabled: boolean = false;
-  autoPlayDelay: number = 5000; // 5 seconds
+  autoPlayDelay: number = 5000;
+
+  private touchStartX: number = 0;
+  private touchStartY: number = 0;
+  private readonly swipeThreshold: number = 50;
 
   ngOnInit(): void {
+    this.checkMobile();
     if (this.autoPlayEnabled) {
       this.startAutoPlay();
     }
@@ -38,21 +62,31 @@ export class ProjectsComponent implements OnInit {
     this.stopAutoPlay();
   }
 
-  nextProject(): void {
-    if (this.currentIndex < this.totalProjects - 2) {
-      this.currentIndex++;
-    } else {
-      this.currentIndex = 0;  // Loop back to start
+  @HostListener('window:resize')
+  onResize(): void {
+    const wasMobile = this.isMobile;
+    this.checkMobile();
+    // Reset index if switching between mobile/desktop to avoid out-of-bounds
+    if (wasMobile !== this.isMobile) {
+      this.currentIndex = 0;
     }
+  }
+
+  checkMobile(): void {
+    this.isMobile = window.innerWidth <= 1024;
+  }
+
+  nextProject(): void {
+    this.currentIndex = this.currentIndex < this.maxIndex
+      ? this.currentIndex + 1
+      : 0;
     this.resetAutoPlay();
   }
 
   previousProject(): void {
-    if (this.currentIndex > 0) {
-      this.currentIndex--;
-    } else {
-      this.currentIndex = this.totalProjects - 2;  // Loop to last pair
-    }
+    this.currentIndex = this.currentIndex > 0
+      ? this.currentIndex - 1
+      : this.maxIndex;
     this.resetAutoPlay();
   }
 
@@ -63,11 +97,7 @@ export class ProjectsComponent implements OnInit {
 
   startAutoPlay(): void {
     this.autoPlayInterval = setInterval(() => {
-      if (this.currentIndex < this.totalProjects - 2) {
-        this.nextProject();
-      } else {
-        this.currentIndex = 0; // Loop back to start
-      }
+      this.nextProject();
     }, this.autoPlayDelay);
   }
 
@@ -85,31 +115,35 @@ export class ProjectsComponent implements OnInit {
   }
 
   onKeyDown(event: KeyboardEvent): void {
-    if (event.key === 'ArrowLeft') {
-      this.previousProject();
-    } else if (event.key === 'ArrowRight') {
-      this.nextProject();
+    if (event.key === 'ArrowLeft') this.previousProject();
+    else if (event.key === 'ArrowRight') this.nextProject();
+  }
+
+  onTouchStart(event: TouchEvent): void {
+    this.touchStartX = event.touches[0].clientX;
+    this.touchStartY = event.touches[0].clientY;
+  }
+
+  onTouchEnd(event: TouchEvent): void {
+    const deltaX = event.changedTouches[0].clientX - this.touchStartX;
+    const deltaY = event.changedTouches[0].clientY - this.touchStartY;
+    if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > this.swipeThreshold) {
+      if (deltaX < 0) this.nextProject();
+      else this.previousProject();
     }
   }
-
-  getEndIndex(): number {
-    return Math.min(this.currentIndex + 2, this.totalProjects);
-  }
-
 
   getCurrentProjectNumbers(): string {
     const start = this.currentIndex + 1;
-    const end = Math.min(this.currentIndex + 2, this.totalProjects);
-
-    if (start === end) {
-      return `${start}`;
-    }
+    const end = Math.min(this.currentIndex + this.slidesPerView, this.totalProjects);
+    if (start === end) return `${start}`;
     return `${start}-${end}`;
   }
 
   getTransform(): string {
-    const percentShift = this.currentIndex * 50;
-    const gapShift = this.currentIndex * 1.5;
+    // Each slide is (100 / slidesPerView)% wide, shift by currentIndex steps
+    const percentShift = this.currentIndex * (100 / this.slidesPerView);
+    const gapShift = this.isMobile ? 0 : this.currentIndex * 1.5;
     return `translateX(calc(-${percentShift}% - ${gapShift}rem))`;
   }
   openLink(url: string): void {

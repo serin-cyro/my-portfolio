@@ -6,7 +6,6 @@
   margin: 0 auto;
 }
 
-// Carousel Wrapper
 .carousel-wrapper {
   position: relative;
   display: flex;
@@ -23,26 +22,28 @@
   }
 }
 
-// Carousel Track (overflow container)
 .carousel-track {
   flex: 1;
   overflow: hidden;
   border-radius: 14px;
-  padding: 0.5rem 0; // Added vertical padding for better spacing
+  padding: 0.5rem 0;
 }
 
-// Carousel Slides Container
 .carousel-slides {
   display: flex;
-  gap: 1.5rem; // Gap between the 2 visible cards
+  gap: 1.5rem;
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
-  padding: 0 0.5rem; // Padding to prevent card edges from being cut off
+  padding: 0 0.5rem;
+
+  @media (max-width: 1024px) {
+    gap: 0;
+    padding: 0;
+  }
 }
 
-// Individual Slide - Show 2 projects at a time
 .carousel-slide {
-  min-width: calc(50% - 0.75rem); // 50% minus half the gap
+  min-width: calc(50% - 0.75rem);
   max-width: calc(50% - 0.75rem);
   flex-shrink: 0;
 
@@ -50,14 +51,8 @@
     min-width: 100%;
     max-width: 100%;
   }
-
-  @media (max-width: 768px) {
-    min-width: 100%;
-    max-width: 100%;
-  }
 }
 
-// Navigation Buttons
 .carousel-btn {
   width: 48px;
   height: 48px;
@@ -137,6 +132,7 @@
   position: absolute;
   top: 1rem;
   left: 1rem;
+  right: 1rem; // prevent overflow on mobile
   z-index: 10;
   display: flex;
   gap: 0.5rem;

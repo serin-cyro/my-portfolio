@@ -49,6 +49,12 @@ export class SkillsComponent {
       level: 'Proficient',
       width: '75%',
       tags: ['AWS IAM', 'S3 Security', 'CloudTrail', 'CIS Benchmarks', 'GCP']
+    },
+    {
+      name: 'Automation & Scripting',
+      level: 'Proficient',
+      width: '70%',
+      tags: ['Python', 'Bash', 'PowerShell', 'Log Parsing', 'Task Scheduling']
     }
   ];
 
@@ -74,7 +80,7 @@ export class SkillsComponent {
 
   // ── Cloud & DevSecOps (logo grid section) ──────────────────────────────────
   cloudTools = [
-    { src: 'https://cdn.simpleicons.org/amazonaws/FF9900', alt: 'AWS', name: 'AWS' },
+    { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/amazonwebservices/amazonwebservices-original-wordmark.svg', alt: 'AWS', name: 'AWS' },
     { src: 'https://cdn.simpleicons.org/googlecloud/4285F4', alt: 'GCP', name: 'GCP' },
     { src: 'https://cdn.simpleicons.org/docker/2496ED', alt: 'Docker', name: 'Docker' },
     { src: 'https://cdn.simpleicons.org/kubernetes/326CE5', alt: 'Kubernetes', name: 'Kubernetes' },
@@ -82,9 +88,9 @@ export class SkillsComponent {
     { src: 'https://cdn.simpleicons.org/github/FFFFFF', alt: 'GitHub', name: 'GitHub' },
     { src: 'https://cdn.simpleicons.org/linux/FCC624', alt: 'Linux', name: 'Linux' },
     { src: 'https://cdn.simpleicons.org/gnubash/4EAA25', alt: 'Bash', name: 'Bash' },
-    { src: 'https://cdn.simpleicons.org/powershell/5391FE', alt: 'PowerShell', name: 'PowerShell' },
+    { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/powershell/powershell-original.svg', alt: 'PowerShell', name: 'PowerShell' },
     { src: 'https://cdn.simpleicons.org/jira/0052CC', alt: 'Jira', name: 'Jira' },
-    { src: 'https://cdn.simpleicons.org/servicenow/00BCF2', alt: 'ServiceNow', name: 'ServiceNow' },
+    { src: 'https://www.vectorlogo.zone/logos/servicenow/servicenow-icon.svg', alt: 'ServiceNow', name: 'ServiceNow' },
     { src: 'https://cdn.simpleicons.org/confluence/172B4D', alt: 'Confluence', name: 'Confluence' },
   ];
 
@@ -94,10 +100,10 @@ export class SkillsComponent {
     { src: 'https://cdn.simpleicons.org/typescript/3178C6', alt: 'TypeScript', name: 'TypeScript' },
     { src: 'https://cdn.simpleicons.org/python/3776AB', alt: 'Python', name: 'Python' },
     { src: 'https://cdn.simpleicons.org/javascript/F7DF1E', alt: 'JavaScript', name: 'JavaScript' },
-    { src: 'https://cdn.simpleicons.org/openjdk/FFFFFF', alt: 'Java', name: 'Java' },
+    { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg', alt: 'Java', name: 'Java' },
     { src: 'https://cdn.simpleicons.org/cplusplus/00599C', alt: 'C++', name: 'C++' },
     { src: 'https://cdn.simpleicons.org/html5/E34F26', alt: 'HTML5', name: 'HTML5' },
-    { src: 'https://cdn.simpleicons.org/css3/06B6D4', alt: 'CSS3', name: 'CSS3' },
+    { src: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg', alt: 'CSS3', name: 'CSS3' },
   ];
 
   // ── Certifications ─────────────────────────────────────────────────────────

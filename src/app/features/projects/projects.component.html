@@ -13,10 +13,60 @@
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
+                  <mat-icon>travel_explore</mat-icon>
+                  OSINT
+                </span>
+                <span class="badge featured-badge">Featured</span>
+              </div>
+              <div class="project-image-placeholder osint-bg">
+                <mat-icon class="project-icon">manage_search</mat-icon>
+                <div class="project-overlay-text">Threat Intelligence</div>
+              </div>
+            </div>
+            <div class="project-content">
+              <h3 class="project-title">Cyber Threat Intelligence & OSINT Analysis | Rivian Automotive</h3>
+              <p class="project-description">
+                Comprehensive passive reconnaissance and CVE/threat research on Rivian's infrastructure,
+                enumerating 2,250+ intelligence findings across 44 data categories.
+              </p>
+              <div class="project-tech">
+                <span class="tech-tag">Shodan</span>
+                <span class="tech-tag">SpiderFoot</span>
+                <span class="tech-tag">theHarvester</span>
+                <span class="tech-tag">OSINT</span>
+              </div>
+              <div class="project-highlights">
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>255 hostnames, 276 IPv6 addresses & 127 affiliated emails enumerated</span>
+                </div>
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>80 blacklisted entities & 8 compromised corporate emails uncovered</span>
+                </div>
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>5 actionable controls delivered covering credentials, staging & vendor risks</span>
+                </div>
+              </div>
+              <div class="project-actions">
+                <button mat-stroked-button class="btn-secondary" disabled>
+                  <mat-icon>lock</mat-icon>
+                  <span>Report currently in progress</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="carousel-slide">
+          <div class="project-card featured">
+            <div class="project-header">
+              <div class="project-badges">
+                <span class="badge security">
                   <mat-icon>shield</mat-icon>
                   Security Research
                 </span>
-                <span class="badge featured-badge">Featured</span>
               </div>
 
               <div class="project-image-placeholder security-bg">
@@ -35,30 +85,37 @@
               <div class="project-tech">
                 <span class="tech-tag">Python</span>
                 <span class="tech-tag">Network Analysis</span>
-                <span class="tech-tag">NIST CSF</span>
+                <span class="tech-tag">NIST CSF 2.0</span>
                 <span class="tech-tag">Graph Theory</span>
+                <span class="tech-tag">DHS/CISA</span>
               </div>
 
               <div class="project-highlights">
                 <div class="highlight-item">
                   <mat-icon>check_circle</mat-icon>
-                  <span>Calculated spectral radius & betweenness centrality</span>
+                  <span>Mapped infrastructure vulnerabilities to security controls using NIST CSF 2.0 & third-party risk
+                    frameworks</span>
                 </div>
                 <div class="highlight-item">
                   <mat-icon>check_circle</mat-icon>
-                  <span>Modeled cascading failure scenarios</span>
+                  <span>Designed 8-control DHS/CISA mitigation strategy with $100M budget projecting 45.3% risk
+                    reduction</span>
+                </div>
+                <div class="highlight-item">
+                  <mat-icon>check_circle</mat-icon>
+                  <span>Modeled 10-station network — top node carried annualized risk of $119.59M</span>
                 </div>
               </div>
 
               <div class="project-actions">
                 <button mat-raised-button class="btn-primary">
                   <mat-icon>article</mat-icon>
-                  <span>View Details</span>
+                  <span>View Report</span>
                 </button>
-                <button mat-stroked-button class="btn-secondary">
+                <!-- <button mat-stroked-button class="btn-secondary">
                   <mat-icon>code</mat-icon>
                   <span>Source Code</span>
-                </button>
+                </button> -->
               </div>
             </div>
           </div>
@@ -106,13 +163,17 @@
               </div>
 
               <div class="project-actions">
-                <button mat-raised-button class="btn-primary">
+                <!-- <button mat-raised-button class="btn-primary">
                   <mat-icon>launch</mat-icon>
                   <span>Live Demo</span>
                 </button>
                 <button mat-stroked-button class="btn-secondary">
                   <mat-icon>code</mat-icon>
                   <span>GitHub</span>
+                </button> -->
+                <button mat-stroked-button class="btn-secondary" disabled>
+                  <mat-icon>lock</mat-icon>
+                  <span>File not found</span>
                 </button>
               </div>
             </div>
@@ -203,11 +264,12 @@
               </div>
 
               <div class="project-actions">
-                <button mat-raised-button class="btn-primary">
+                <!-- <button mat-raised-button class="btn-primary">
                   <mat-icon>launch</mat-icon>
                   <span>Live Site</span>
-                </button>
-                <button mat-stroked-button class="btn-secondary">
+                </button> -->
+                <button mat-raised-button class="btn-primary"
+                  (click)="openLink('https://github.com/serin-cyro/my-portfolio')">
                   <mat-icon>code</mat-icon>
                   <span>Source</span>
                 </button>
@@ -225,7 +287,7 @@
   </div>
 
   <div class="carousel-indicators">
-    <button *ngFor="let page of [0, 1, 2]; let i = index" class="indicator" [class.active]="i === currentIndex"
+    <button *ngFor="let page of [0, 1, 2, 3]; let i = index" class="indicator" [class.active]="i === currentIndex"
       (click)="goToProject(i)">
     </button>
   </div>

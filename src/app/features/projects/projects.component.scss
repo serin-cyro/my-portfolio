@@ -28,21 +28,21 @@
   flex: 1;
   overflow: hidden;
   border-radius: 14px;
-  padding: 0.5rem 0;  // Added vertical padding for better spacing
+  padding: 0.5rem 0; // Added vertical padding for better spacing
 }
 
 // Carousel Slides Container
 .carousel-slides {
   display: flex;
-  gap: 1.5rem;  // Gap between the 2 visible cards
+  gap: 1.5rem; // Gap between the 2 visible cards
   transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1);
   will-change: transform;
-  padding: 0 0.5rem;  // Padding to prevent card edges from being cut off
+  padding: 0 0.5rem; // Padding to prevent card edges from being cut off
 }
 
 // Individual Slide - Show 2 projects at a time
 .carousel-slide {
-  min-width: calc(50% - 0.75rem);  // 50% minus half the gap
+  min-width: calc(50% - 0.75rem); // 50% minus half the gap
   max-width: calc(50% - 0.75rem);
   flex-shrink: 0;
 
@@ -110,7 +110,7 @@
   flex-direction: column;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   height: 100%;
-  width: 100%;  // Take full width of slide
+  width: 100%; // Take full width of slide
 
   &:hover {
     transform: translateY(-4px);
@@ -145,15 +145,14 @@
   .badge {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 0.875rem;
+    gap: 0.4rem;
+    padding: 0.4rem 0.75rem;
     border-radius: 50px;
     font-size: 0.75rem;
-    font-weight: 600;
+    font-weight: 700;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
-    backdrop-filter: blur(12px);
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.04em;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
 
     mat-icon {
       font-size: 14px;
@@ -161,9 +160,10 @@
       height: 14px;
     }
 
+    // ── Dark opaque backgrounds — always visible against any gradient ──
     &.security {
-      background: rgba(16, 185, 129, 0.2);
-      border: 1px solid rgba(16, 185, 129, 0.5);
+      background: rgba(0, 0, 0, 0.75);
+      border: 1.5px solid #10b981;
       color: #10b981;
 
       mat-icon {
@@ -172,8 +172,8 @@
     }
 
     &.development {
-      background: rgba(59, 130, 246, 0.2);
-      border: 1px solid rgba(59, 130, 246, 0.5);
+      background: rgba(0, 0, 0, 0.75);
+      border: 1.5px solid #3b82f6;
       color: #3b82f6;
 
       mat-icon {
@@ -214,6 +214,10 @@
     color: white;
     text-shadow: 0 2px 12px rgba(0, 0, 0, 0.6);
     letter-spacing: 0.05em;
+  }
+
+  &.osint-bg {
+    background: linear-gradient(135deg, #f59e0b 0%, #ef4444 100%);
   }
 
   &.security-bg {
@@ -401,7 +405,6 @@
   }
 }
 
-// Carousel Indicators
 .carousel-indicators {
   display: flex;
   justify-content: center;
@@ -433,7 +436,6 @@
   }
 }
 
-// Project Counter
 .project-counter {
   text-align: center;
   font-size: 1rem;
@@ -457,7 +459,6 @@
   }
 }
 
-// More Projects Link
 .more-projects {
   text-align: center;
   padding-top: 2rem;
@@ -497,13 +498,12 @@
   }
 }
 
-// Keyboard Navigation Hint (Optional)
 .keyboard-hint {
   text-align: center;
   margin-top: 1rem;
   font-size: 0.85rem;
   color: #94a3b8;
-  
+
   mat-icon {
     font-size: 16px;
     width: 16px;

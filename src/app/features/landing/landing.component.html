@@ -175,7 +175,6 @@
 <section id="about" class="about-section" [ngClass]="{'mobile-padding' : isMobile}">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Who I Am</span> -->
       <h2 class="section-title">
         Software Engineer <span class="gradient-text">×</span> Security Researcher
       </h2>
@@ -209,7 +208,7 @@
         <div class="impact-card">
           <div class="impact-number gradient-text">Top 5%</div>
           <div class="impact-label">TryHackMe Ranking</div>
-          <div class="impact-detail">Active cybersecurity practitioner</div>
+          <div class="impact-detail">Ranked in global cybersecurity community</div>
         </div>
 
         <div class="impact-card">
@@ -252,7 +251,23 @@
               <mat-icon>bug_report</mat-icon>
             </div>
             <h4>Threat Detection</h4>
-            <p>Network analysis, incident response, SIEM tools, intrusion detection</p>
+            <p>Splunk, Snort, Elastic Stack, incident triage, IOC analysis, alert correlation, MITRE ATT&CK</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon threat">
+              <mat-icon>travel_explore</mat-icon>
+            </div>
+            <h4>OSINT & Threat Intelligence</h4>
+            <p>Passive reconnaissance, CVE research, Shodan, SpiderFoot, theHarvester, CTI analysis</p>
+          </div>
+
+          <div class="competency-card">
+            <div class="competency-icon security">
+              <mat-icon>policy</mat-icon>
+            </div>
+            <h4>Compliance & Risk</h4>
+            <p>NIST CSF 2.0, NIST SP 800-53, ISO 27001, PCI-DSS, SOC 2, HIPAA, risk assessment</p>
           </div>
         </div>
       </div>
@@ -278,6 +293,10 @@
             <mat-icon>search</mat-icon>
             Threat Hunting
           </span>
+          <span class="pill security">
+            <mat-icon>travel_explore</mat-icon>
+            OSINT
+          </span>
           <span class="pill">REST & GraphQL</span>
           <span class="pill">Linux</span>
           <span class="pill security">DevSecOps</span>
@@ -292,7 +311,7 @@
         </div>
         <div class="cta-content">
           <h4>Open to Opportunities</h4>
-          <p>Security Engineering • Application Security • Cloud Security • SecOps</p>
+          <p>Security Engineering • AppSec • Threat Intelligence • Cloud Security • SecOps</p>
         </div>
         <button mat-raised-button class="btn-primary" (click)="scrollTo('contact')">
           Let's Connect
@@ -305,7 +324,6 @@
 <section id="timeline" class="timeline-section">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Journey</span> -->
       <h2 class="section-title">Experience Timeline</h2>
     </div>
     <app-experience-timeline></app-experience-timeline>
@@ -315,7 +333,6 @@
 <section id="projects" class="projects-section">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Portfolio</span> -->
       <h2 class="section-title">Featured Projects</h2>
     </div>
     <app-projects></app-projects>
@@ -325,7 +342,6 @@
 <section id="skills" class="skills-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Expertise</span> -->
       <h2 class="section-title">Technical Arsenal</h2>
     </div>
     <app-skills></app-skills>
@@ -335,7 +351,6 @@
 <section id="contact" class="contact-section-wrapper">
   <div class="section-container">
     <div class="section-header">
-      <!-- <span class="section-label">Get In Touch</span> -->
       <h2 class="section-title">Let's Build Something Secure</h2>
     </div>
     <app-contact></app-contact>

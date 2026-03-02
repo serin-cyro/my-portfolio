@@ -12,14 +12,15 @@ import { MatIconModule } from '@angular/material/icon';
 })
 export class ProjectsComponent implements OnInit {
   currentIndex: number = 0;
-  totalProjects: number = 4;
-  
+  totalProjects: number = 5;
+
   // Project data for indicators (can be expanded with more details)
   projects = [
-    { id: 1, title: 'WMATA Metro Analysis' },
-    { id: 2, title: 'Hybrid Deep Learning IDS' },
-    { id: 3, title: 'Secure Reinsurance Platform' },
-    { id: 4, title: 'Modern Portfolio Website' }
+    { id: 1, title: 'Rivian OSINT & Threat Intelligence' },
+    { id: 2, title: 'WMATA Metro Analysis' },
+    { id: 3, title: 'Hybrid Deep Learning IDS' },
+    { id: 4, title: 'Secure Reinsurance Platform' },
+    { id: 5, title: 'Modern Portfolio Website' }
   ];
 
   // Auto-play settings (optional)
@@ -99,7 +100,7 @@ export class ProjectsComponent implements OnInit {
   getCurrentProjectNumbers(): string {
     const start = this.currentIndex + 1;
     const end = Math.min(this.currentIndex + 2, this.totalProjects);
-    
+
     if (start === end) {
       return `${start}`;
     }
@@ -110,5 +111,8 @@ export class ProjectsComponent implements OnInit {
     const percentShift = this.currentIndex * 50;
     const gapShift = this.currentIndex * 1.5;
     return `translateX(calc(-${percentShift}% - ${gapShift}rem))`;
+  }
+  openLink(url: string): void {
+    window.open(url, '_blank');
   }
 }

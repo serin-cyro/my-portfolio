@@ -10,7 +10,7 @@
       <div class="carousel-slides" [style.transform]="getTransform()">
 
         <div class="carousel-slide">
-          <div class="project-card featured" [class.expanded]="expandedIndex === 0" (click)="toggleExpand(0)">
+          <div class="project-card featured" [class.expanded]="expandedIndex === 0">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
@@ -19,7 +19,7 @@
                 </span>
                 <span class="badge featured-badge">Featured</span>
               </div>
-              <div class="project-image-placeholder osint-bg">
+              <div class="project-image-placeholder osint-bg" (click)="toggleExpand(0)">
                 <mat-icon class="project-icon">manage_search</mat-icon>
                 <div class="project-overlay-text">Threat Intelligence</div>
                 <div class="mobile-card-overlay">
@@ -31,7 +31,7 @@
                 </div>
               </div>
             </div>
-            <div class="project-content">
+            <div class="project-content" (click)="$event.stopPropagation()">
               <h3 class="project-title">Cyber Threat Intelligence & OSINT Analysis | Rivian Automotive</h3>
               <p class="project-description">
                 Comprehensive passive reconnaissance and CVE/threat research on Rivian's infrastructure,
@@ -68,7 +68,7 @@
         </div>
 
         <div class="carousel-slide">
-          <div class="project-card featured" [class.expanded]="expandedIndex === 1" (click)="toggleExpand(1)">
+          <div class="project-card featured" [class.expanded]="expandedIndex === 1">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
@@ -77,7 +77,7 @@
                 </span>
               </div>
 
-              <div class="project-image-placeholder security-bg">
+              <div class="project-image-placeholder security-bg" (click)="toggleExpand(1)">
                 <mat-icon class="project-icon">security</mat-icon>
                 <div class="project-overlay-text">Network Analysis</div>
                 <div class="mobile-card-overlay">
@@ -90,7 +90,7 @@
               </div>
             </div>
 
-            <div class="project-content">
+            <div class="project-content" (click)="$event.stopPropagation()">
               <h3 class="project-title">WMATA Metro Critical Infrastructure Analysis</h3>
               <p class="project-description">
                 Cyber-physical network vulnerability assessment of Washington Metro transit system.
@@ -137,7 +137,7 @@
         </div>
 
         <div class="carousel-slide">
-          <div class="project-card featured" [class.expanded]="expandedIndex === 2" (click)="toggleExpand(2)">
+          <div class="project-card featured" [class.expanded]="expandedIndex === 2">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge security">
@@ -146,7 +146,7 @@
                 </span>
               </div>
 
-              <div class="project-image-placeholder ml-bg">
+              <div class="project-image-placeholder ml-bg" (click)="toggleExpand(2)">
                 <mat-icon class="project-icon">psychology</mat-icon>
                 <div class="project-overlay-text">Deep Learning IDS</div>
                 <div class="mobile-card-overlay">
@@ -159,7 +159,7 @@
               </div>
             </div>
 
-            <div class="project-content">
+            <div class="project-content" (click)="$event.stopPropagation()">
               <h3 class="project-title">Hybrid Deep Learning IDS</h3>
               <p class="project-description">
                 Designed intrusion detection system using hybrid deep learning to identify DDoS attacks,
@@ -204,7 +204,7 @@
 
 
         <div class="carousel-slide">
-          <div class="project-card" [class.expanded]="expandedIndex === 3" (click)="toggleExpand(3)">
+          <div class="project-card" [class.expanded]="expandedIndex === 3">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge development">
@@ -213,7 +213,7 @@
                 </span>
               </div>
 
-              <div class="project-image-placeholder enterprise-bg">
+              <div class="project-image-placeholder enterprise-bg" (click)="toggleExpand(3)">
                 <mat-icon class="project-icon">corporate_fare</mat-icon>
                 <div class="project-overlay-text">Enterprise Platform</div>
                 <div class="mobile-card-overlay">
@@ -226,7 +226,7 @@
               </div>
             </div>
 
-            <div class="project-content">
+            <div class="project-content" (click)="$event.stopPropagation()">
               <h3 class="project-title">Secure Reinsurance Platform Migration</h3>
               <p class="project-description">
                 Led frontend migration from legacy GWT to modern Angular architecture for global
@@ -263,7 +263,7 @@
 
 
         <div class="carousel-slide">
-          <div class="project-card" [class.expanded]="expandedIndex === 4" (click)="toggleExpand(4)">
+          <div class="project-card" [class.expanded]="expandedIndex === 4">
             <div class="project-header">
               <div class="project-badges">
                 <span class="badge development">
@@ -272,7 +272,7 @@
                 </span>
               </div>
 
-              <div class="project-image-placeholder portfolio-bg">
+              <div class="project-image-placeholder portfolio-bg" (click)="toggleExpand(4)">
                 <mat-icon class="project-icon">palette</mat-icon>
                 <div class="project-overlay-text">Modern Portfolio</div>
                 <div class="mobile-card-overlay">
@@ -285,7 +285,7 @@
               </div>
             </div>
 
-            <div class="project-content">
+            <div class="project-content" (click)="$event.stopPropagation()">
               <h3 class="project-title">Modern Portfolio Website</h3>
               <p class="project-description">
                 Designed and developed responsive portfolio website with modern animations,

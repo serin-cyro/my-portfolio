@@ -2,6 +2,7 @@
 
 .skills-container {
   width: 100%;
+  overflow-x: hidden;
 }
 
 .skills-grid {
@@ -23,6 +24,7 @@
   padding: var(--space-xl);
   backdrop-filter: blur(12px);
   transition: all var(--transition-base);
+  overflow: hidden;
 
   &:hover {
     transform: translateY(-4px);
@@ -156,12 +158,10 @@
             left: 0;
             right: 0;
             bottom: 0;
-            background: linear-gradient(
-              90deg,
-              transparent,
-              rgba(255, 255, 255, 0.3),
-              transparent
-            );
+            background: linear-gradient(90deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent);
             animation: shimmer 2s infinite;
           }
 
@@ -169,6 +169,7 @@
             0% {
               transform: translateX(-100%);
             }
+
             100% {
               transform: translateX(100%);
             }
@@ -180,6 +181,7 @@
         display: flex;
         flex-wrap: wrap;
         gap: var(--space-xs);
+        overflow: hidden;
 
         span {
           font-size: 0.75rem;
@@ -205,6 +207,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
     gap: var(--space-md);
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .tech-logo {
       display: flex;
@@ -256,6 +262,10 @@
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: var(--space-sm);
+
+    @media (max-width: 768px) {
+      grid-template-columns: repeat(2, 1fr);
+    }
 
     .tool-item {
       display: flex;
@@ -425,7 +435,7 @@
 
   .skill-category {
     .skill-logos-grid {
-      grid-template-columns: repeat(3, 1fr);
+      grid-template-columns: repeat(2, 1fr);
     }
 
     .tools-grid {

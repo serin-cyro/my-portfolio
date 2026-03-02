@@ -5,7 +5,7 @@
       <mat-icon>chevron_left</mat-icon>
     </button>
 
-    <div class="carousel-track">
+    <div class="carousel-track" (touchstart)="onTouchStart($event)" (touchend)="onTouchEnd($event)">
       <div class="carousel-slides" [style.transform]="getTransform()">
 
         <div class="carousel-slide">
@@ -287,7 +287,7 @@
   </div>
 
   <div class="carousel-indicators">
-    <button *ngFor="let page of [0, 1, 2, 3]; let i = index" class="indicator" [class.active]="i === currentIndex"
+    <button *ngFor="let i of indicatorRange" class="indicator" [class.active]="i === currentIndex"
       (click)="goToProject(i)">
     </button>
   </div>

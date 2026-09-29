@@ -4,7 +4,6 @@ import { routes } from './app.routes';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { importProvidersFrom } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { NgParticlesModule } from 'ng-particles';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { provideHttpClient } from '@angular/common/http';
 export const appConfig: ApplicationConfig = {
@@ -12,6 +11,6 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideAnimations(),
     provideHttpClient(),
-    importProvidersFrom(MatButtonModule, NgParticlesModule,MatSidenavModule)
+    importProvidersFrom(MatButtonModule,MatSidenavModule)
   ]
 };
